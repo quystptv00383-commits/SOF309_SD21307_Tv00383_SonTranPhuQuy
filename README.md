@@ -1,64 +1,107 @@
-# 🍵 DỰ ÁN HỆ THỐNG QUẢN LÝ VÀ BÁN HÀNG TRÀ SỮA — TEA POS
-### MÔN HỌC: SOF309 — KIỂM THỬ NÂNG CAO | TUẦN 1: NGHIỆM THU DỰ ÁN
+﻿# SOF309: KIỂM THỬ NÂNG CAO CÙNG AI
+> **Assignment Master Template — FPT Polytechnic**  
+> **Giảng viên hướng dẫn:** ThS. Trần Quang Bình (binhtq7 - Thầy Mười Giáo)  
+> 📖 [Xem Cẩm nang hướng dẫn chi tiết 6 tuần](./docs/HUONG_DAN_CHI_TIET_6_TUAN.md)
 
 ---
 
-## 📌 THÔNG TIN SINH VIÊN
+## 📌 THÔNG TIN SINH VIÊN & ĐỀ TÀI
 
-* **Lớp:** `SD21307`
-* **Mã số sinh viên (MSSV):** `Tv00383`
-* **Họ và tên:** `Sơn Trần Phú Quý`
-* **Tên Repo chuẩn quy ước:** `SOF309_SD21307_Tv00383_SơnTrầnPhúQuý`
-* **Kho lưu trữ GitHub:** [https://github.com/quystptv00383-commits/desktop-tutorial](https://github.com/quystptv00383-commits/desktop-tutorial)
+* **Họ và tên:** **Sơn Trần Phú Quý**
+* **Mã số sinh viên (MSSV):** **Tv00383**
+* **Lớp:** **SD21307**
+* **Tên Repo chuẩn:** `SOF309_SD21307_Tv00383_SonTranPhuQuy`
+* **Link Repo GitHub:** [https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy](https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy)
+* **Đề tài Web cá nhân:** **Hệ Thống Quản Lý & Điểm Bán Hàng Trà Sữa (Tea POS & CRM Loyalty)**
+* **URL chạy Local (Y1):** `http://localhost:8080/TEA_POS_PROJECT_war/home`
 
 ---
 
-## 📁 DANH MỤC SẢN PHẨM NGHIỆM THU TUẦN 1 (08/11/2026)
+## 🏆 KẾT QUẢ NGHIỆM THU TUẦN 1 (08/11/2026)
 
-| STT | Tên sản phẩm nghiệm thu | File tài liệu tương ứng | Trạng thái nghiệm thu |
+| Tiêu chí | Sản phẩm bàn giao | Đường dẫn tài liệu | Trạng thái |
 |:---:|:---|:---|:---:|
-| 1 | **Tên Repo chuẩn quy ước** | `SOF309_SD21307_Tv00383_SơnTrầnPhúQuý` | ✅ ĐÃ ĐẶT CHUẨN |
-| 2 | **Web chạy mượt trên Local** | Chạy trên Tomcat 11 cổng `http://localhost:8080/` | ✅ 200 OK |
-| 3 | **Đặc tả yêu cầu phần mềm** | 📋 [SPECIFICATIONS.md](./SPECIFICATIONS.md) | ✅ HOÀN THÀNH (Y2) |
-| 4 | **Kế hoạch kiểm thử (Test Plan)** | 📋 [TEST_PLAN.md](./TEST_PLAN.md) | ✅ HOÀN THÀNH (Y2) |
-| 5 | **Kịch bản kiểm thử (Test Cases)**| 📊 [TEST_CASES.md](./TEST_CASES.md) | ✅ 80 TCs (97.5% PASS) |
-| 6 | **Báo cáo sửa lỗi CSDL & Code** | 🛠️ [FIXED_BUGS.md](./FIXED_BUGS.md) | ✅ ĐÃ KHẮC PHỤC 100% |
-| 7 | **Minh chứng chuỗi Prompt AI** | 📜 [PROMPT_HISTORY.md](./PROMPT_HISTORY.md) & [TONG_HOP_PROMPT.txt](./TONG_HOP_PROMPT.txt) | ✅ 15 PROMPTS |
+| **Tên Repo chuẩn** | Đúng quy chuẩn `SOF309_<LỚP>_<MSSV>_<TÊN>` | [Link Repo](https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy) | ✅ **HOÀN THÀNH** |
+| **Y1: Web chạy local** | Chạy trên Tomcat 11 cổng 8080 | [Hướng dẫn khởi chạy](#-hướng-dẫn-khởi-chạy-web-local-y1) | ✅ **200 OK** |
+| **Y2: Đặc tả nghiệp vụ** | Đặc tả 13 module, 19 bảng DB, endpoints | 📋 [docs/SPECIFICATIONS.md](./docs/SPECIFICATIONS.md) | ✅ **HOÀN THÀNH** |
+| **Y2: Kế hoạch kiểm thử** | Kế hoạch kiểm thử tổng thể (Test Plan) | 📋 [docs/TEST_PLAN.md](./docs/TEST_PLAN.md) | ✅ **HOÀN THÀNH** |
+| **Y2: Kịch bản kiểm thử** | 80 Test Cases chi tiết (Positive & Negative) | 📊 [docs/TEST_CASES.md](./docs/TEST_CASES.md) | ✅ **78/80 PASS (97.5%)** |
+| **Y3 & Y4: Khung Test mẫu** | JUnit 5 (`SampleControllerTest`) & Selenium POM | `src/test/java/com/poly/sof309/` | ✅ **BUILD SUCCESS** |
+| **Y5: CI/CD Pipeline** | GitHub Actions tự động chạy `mvn clean test` | [.github/workflows/test.yml](./.github/workflows/test.yml) | ✅ **PASS** |
+| **Y6: Minh chứng AI (Điểm A)** | Nhật ký Prompt, sinh Test Plan/Case & Debug | 📜 [docs/ai-logs/](./docs/ai-logs/) | ✅ **ĐỦ MINH CHỨNG** |
 
 ---
 
-## 🚀 CÁCH KHỞI CHẠY DỰ ÁN TRÊN LOCAL (TOMCAT 11 + SQL SERVER)
+## 📁 CẤU TRÚC THƯ MỤC DỰ ÁN (ĐÚNG QUY CHUẨN)
+
+```text
+SOF309_SD21307_Tv00383_SonTranPhuQuy/
+├── pom.xml                               # Đã tích hợp JUnit 5, Selenium 4, Tomcat & SQL Server
+├── .github/
+│   └── workflows/
+│       └── test.yml                     # [Y5] Tự động chạy test CI/CD khi push code
+├── docs/                                # [Y2 & Y6] Tài liệu & Minh chứng AI
+│   ├── HUONG_DAN_CHI_TIET_6_TUAN.md     # Cẩm nang hướng dẫn chi tiết 6 tuần của Giảng viên
+│   ├── SPECIFICATIONS.md                # [Y1] Đặc tả nghiệp vụ Web Tea POS
+│   ├── TEST_PLAN.md                     # [Y2] Kế hoạch kiểm thử toàn diện
+│   ├── TEST_CASES.md                    # [Y2] Bộ 80 kịch bản Test Case chi tiết
+│   ├── FIXED_BUGS.md                    # Báo cáo các file lỗi đã được sửa & Root Cause
+│   └── ai-logs/                         # [Y6] Minh chứng tương tác AI (Điểm A)
+│       ├── README.md                    # Hướng dẫn ghi chép minh chứng AI
+│       ├── 01_test_design_ai.md         # Minh chứng AI RAG sinh Test Plan & Test Cases
+│       ├── 04_debug_logs_ai.md          # Minh chứng AI debug lỗi runtime SQL & Tomcat
+│       ├── PROMPT_HISTORY.md            # Toàn bộ lịch sử prompt và model AI qua các phiên
+│       └── TONG_HOP_PROMPT.txt          # Bản văn bản tổng hợp prompt
+├── src/
+│   ├── main/                            # [Y1] Mã nguồn Web Tea POS của sinh viên
+│   │   ├── java/                        # 113 file mã nguồn Java (Controller, Filter, DAO, Model, Config)
+│   │   ├── resources/                   # application.properties (SQL Server Connection)
+│   │   └── webapp/                      # Giao diện JSP, CSS, JS, Dashboard, POS
+│   └── test/java/com/poly/sof309/
+│       ├── controllers/                 # [Y3] Unit Test cho Controller bằng JUnit 5
+│       │   └── SampleControllerTest.java
+│       └── ui/                          # [Y4] Selenium UI Test (Page Object Model)
+│           ├── pages/                   # Các class Page Object (LoginPage.java...)
+│           │   └── LoginPage.java
+│           └── tests/                   # Kịch bản test chạy trên trình duyệt (Data-Driven, Groups)
+│               └── LoginTest.java
+├── screenshots/                         # [Y4 & Y5] Thư mục tự động lưu ảnh chụp khi test fail
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🚀 HƯỚNG DẪN KHỞI CHẠY WEB LOCAL (Y1)
 
 ### 1. Yêu cầu môi trường
-* **JDK:** Java 17 LTS hoặc Java 25
-* **Web Server:** Apache Tomcat 11.0.x
-* **Database:** Microsoft SQL Server 2019/2022
-* **Công cụ:** IntelliJ IDEA Ultimate / Apache Maven 3.9+
+* **JDK:** Java 17 LTS (hoặc Java 21/25)
+* **Application Server:** Apache Tomcat 11.0.x
+* **Cơ sở dữ liệu:** Microsoft SQL Server (Database: `QuanLyQuanCafehetcuu`)
+* **Công cụ xây dựng:** Apache Maven 3.9+ / IntelliJ IDEA Ultimate
 
-### 2. Cấu hình Cơ sở dữ liệu
-* Chạy file kịch bản SQL `CSDL.sql` để tạo database `QuanLyQuanCafehetcuu` (19 bảng, 7 sequences, 7 stored procedures, 5 views).
-* Cấu hình kết nối trong `src/main/resources/application.properties`:
-  ```properties
-  db.url=jdbc:sqlserver://localhost:1433;databaseName=QuanLyQuanCafehetcuu;encrypt=true;trustServerCertificate=true;
-  db.user=HAKAI
-  db.password=14112009
-  ```
+### 2. Cấu hình CSDL trong `src/main/resources/application.properties`
+```properties
+db.url=jdbc:sqlserver://localhost:1433;databaseName=QuanLyQuanCafehetcuu;encrypt=true;trustServerCertificate=true;
+db.user=HAKAI
+db.password=14112009
+```
 
-### 3. Khởi chạy trên IntelliJ IDEA
-1. Mở dự án trong IntelliJ IDEA.
-2. Chọn Run Configuration: **Tomcat 11.0.211**.
-3. Bấm **Run** (`Shift + F10`).
-4. Truy cập các đường dẫn:
-   * **Cổng khách hàng (Portal):** [`http://localhost:8080/TEA_POS_PROJECT_war/home`](http://localhost:8080/TEA_POS_PROJECT_war/home)
-   * **Quản trị & Bán hàng (Login):** [`http://localhost:8080/TEA_POS_PROJECT_war/login`](http://localhost:8080/TEA_POS_PROJECT_war/login)
-     * *Quản trị viên (Admin):* `admin` / `12345678`
-     * *Thu ngân (Staff):* `staff` / `12345678`
+### 3. Khởi chạy và kiểm tra Web
+1. Mở dự án trong IntelliJ IDEA $\rightarrow$ Chọn Run configuration **Tomcat 11.0.211**.
+2. Bấm **Run** (`Shift + F10`).
+3. Truy cập các đường dẫn kiểm tra:
+   * **Cổng khách hàng (Portal):** `http://localhost:8080/TEA_POS_PROJECT_war/home`
+   * **Đăng nhập quản trị & POS:** `http://localhost:8080/TEA_POS_PROJECT_war/login`
+     * *Admin:* `admin` / `12345678`
+     * *Nhân viên:* `staff` / `12345678`
 
 ---
 
-## 🏆 KẾT QUẢ KIỂM THỬ TỔNG QUAN
+## 🧪 LỆNH CHẠY KIỂM THỬ TỰ ĐỘNG (MAVEN TEST)
 
-* **Tổng số ca kiểm thử:** 80 Test Cases
-* **Số ca kiểm thử đạt (PASS):** **78 / 80 (97.5%)**
-* **Số ca cần lưu ý:** 2 (Bảo mật Webhook bypass và nâng cấp hash BCrypt khi production)
-* **Xác thực thực tế:** Đã ghi nhận phản hồi HTTP **200 OK** từ máy chủ Tomcat cục bộ.
+Sinh viên và Giảng viên có thể chạy lệnh kiểm thử tự động tại thư mục gốc của dự án:
+```bash
+mvn clean test
+```
+* **Kết quả:** `BUILD SUCCESS` (100% test pass).

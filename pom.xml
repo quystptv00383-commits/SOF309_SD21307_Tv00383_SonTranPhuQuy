@@ -1,18 +1,45 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.teapos</groupId>
-  <artifactId>TEA_POS_PROJECT</artifactId>
+  <groupId>com.poly</groupId>
+  <artifactId>SOF309_SD21307_Tv00383_SonTranPhuQuy</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>SOF309 Assignment - AI Driven Test Automation (Tea POS)</name>
+
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <junit.jupiter.version>5.10.2</junit.jupiter.version>
+    <selenium.version>4.20.0</selenium.version>
   </properties>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>TEA POS Webapp</name>
+
   <dependencies>
+    <!-- ============================================== -->
+    <!-- [Y3] JUNIT 5 TESTING FRAMEWORK                -->
+    <!-- ============================================== -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ============================================== -->
+    <!-- [Y4] SELENIUM WEBDRIVER CHO UI AUTOMATION     -->
+    <!-- ============================================== -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ============================================== -->
+    <!-- [Y1] MÃ NGUỒN WEB CÁ NHÂN (TEA POS RUNTIME)   -->
+    <!-- ============================================== -->
     <!--  1. JAKARTA SERVLET & JSP API (TOMCAT PROVIDED)  -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
@@ -26,6 +53,7 @@
       <version>3.1.1</version>
       <scope>provided</scope>
     </dependency>
+
     <!--  2. JAKARTA JSTL RUNTIME (MUST EMBED IN WAR)  -->
     <dependency>
       <groupId>jakarta.servlet.jsp.jstl</groupId>
@@ -37,6 +65,7 @@
       <artifactId>jakarta.servlet.jsp.jstl</artifactId>
       <version>3.0.1</version>
     </dependency>
+
     <!--  3. SQL SERVER & CONNECTION POOL  -->
     <dependency>
       <groupId>com.microsoft.sqlserver</groupId>
@@ -48,29 +77,26 @@
       <artifactId>HikariCP</artifactId>
       <version>5.0.0</version>
     </dependency>
+
     <!--  4. GSON FOR AUDIT LOG CONVERSIONS  -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.10.1</version>
     </dependency>
+
     <!--  5. ECLIPSE ANGUS MAIL GỬI OTP (JAKARTA EE 10 COMPATIBLE)  -->
     <dependency>
       <groupId>org.eclipse.angus</groupId>
       <artifactId>jakarta.mail</artifactId>
       <version>2.0.3</version>
     </dependency>
-    <!--  6. TESTING  -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.2</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
+
   <build>
     <finalName>teapos</finalName>
     <plugins>
+      <!-- Maven Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -81,6 +107,15 @@
           <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
       </plugin>
+
+      <!-- Maven Surefire Plugin để tự động chạy Test -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+      </plugin>
+
+      <!-- Maven War Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
