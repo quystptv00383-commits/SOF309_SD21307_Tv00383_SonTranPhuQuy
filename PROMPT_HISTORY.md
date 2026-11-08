@@ -1,0 +1,192 @@
+# 📜 NHẬT KÝ CÁC CÂU LỆNH PROMPT & PHIÊN BẢN AI SỬ DỤNG
+
+---
+
+## 🤖 1. THÔNG TIN CÁC PHIÊN BẢN AI ĐÃ SỬ DỤNG TRONG PHIÊN LÀM VIỆC
+
+| STT | Phiên bản AI Model | Vai trò & Nhiệm vụ thực hiện | Thời điểm |
+|:---:|:---|:---|:---:|
+| 1 | **Claude Opus 4.6 (Thinking)** | Khảo sát mã nguồn dự án, xác định vị trí cấu hình mật khẩu SQL, phân tích kiến trúc MVC/Service/Repository, lập kế hoạch kiểm thử tổng thể, biên soạn ban đầu `TEST_PLAN.md` và `TEST_CASES.md`. | 18:54 – 19:15<br>08/11/2026 |
+| 2 | **Gemini 3.8 Flash (High)** | Trực tiếp khắc phục lỗi cấu hình database, tạo tài khoản SQL Server `HAKAI`, sửa sai lệch tên CSDL, tạo thư mục upload ảnh, tạo file `.env`, biên dịch kiểm tra toàn bộ 113 file mã nguồn qua Maven, chạy test kết nối thực tế với HikariCP, lập file báo cáo lỗi `FIXED_BUGS.md` và cập nhật nhật ký prompt `PROMPT_HISTORY.md`. | 19:19 – Hiện tại<br>08/11/2026 |
+
+*Hệ thống trợ lý mã hóa thông minh:* **Google Antigravity (AGY)**
+
+---
+
+## 💬 2. TOÀN BỘ CÁC CÂU LỆNH PROMPT CỦA NGƯỜI DÙNG THEO TIẾN TRÌNH
+
+### 🔹 Prompt 1: Khởi động phiên làm việc & nạp thư mục dự án
+* **Thời gian:** 08/11/2026 18:54:43
+* **Nội dung câu lệnh:**
+```text
+@[d:\DevSquadcuoimon]
+```
+* **Mục đích:** Chỉ định thư mục gốc của dự án Tea POS (`d:\DevSquadcuoimon`) để AI bắt đầu quét cấu trúc thư mục và tài liệu liên quan.
+
+---
+
+### 🔹 Prompt 2: Yêu cầu tìm vị trí đổi mật khẩu SQL Server
+* **Thời gian:** 08/11/2026 18:55:22
+* **Nội dung câu lệnh:**
+```text
+@[d:\DevSquadcuoimon] vị trí nào là mật khẩu của sql để tôi đổi
+```
+* **Mục đích:** Hỏi AI vị trí chính xác của file cấu hình và dòng chứa thông tin tài khoản, mật khẩu kết nối CSDL SQL Server trong mã nguồn.
+* **Kết quả phản hồi:** AI đã xác định file `src/main/resources/application.properties` dòng 3-4 chứa `db.user=${DB_USER:sa}` và `db.password=${DB_PASSWORD:...}`.
+
+---
+
+### 🔹 Prompt 3: Yêu cầu đổi mật khẩu, chạy test và tạo tài liệu kiểm thử
+* **Thời gian:** 08/11/2026 18:59:53
+* **Nội dung câu lệnh:**
+```text
+Giờ bạn đổi mật khẩu,sau đó tiến hành test để lấy kết quả, sau đó tạo ra 3 file, 1 file là ghi câu prompt mà tôi kêu bạn thực hiện test, 2 là phiên bản AI mà tôi đang sử dụng, và cuối cùng là 2 file này, thêm nó vào file project cho tôi TEST_PLAN.md và TEST_CASES.md
+```
+* **Mục đích:**
+  1. Đổi mật khẩu SQL Server sang mật khẩu mới.
+  2. Thực hiện kiểm thử toàn bộ hệ thống (kiến trúc, logic, bảo mật, cơ sở dữ liệu).
+  3. Tạo tài liệu `TEST_PLAN.md` (Kế hoạch kiểm thử) và `TEST_CASES.md` (Chi tiết các ca kiểm thử).
+  4. Ghi lại câu prompt và phiên bản AI đã sử dụng.
+
+---
+
+### 🔹 Phản hồi tương tác của người dùng: Cung cấp tài khoản & mật khẩu SQL
+* **Thời gian:** 08/11/2026 19:03:12
+* **Nội dung câu lệnh:**
+```text
+bây giờ mật khẩu trong file này chưa trung với sql nên là chưa chay được project nên là bạn đổi cho nó giống nhau di (name:HAKAI pass:14112009 la mật khẩu và tên tài khoản hiện tại trong sql của tôi)
+```
+* **Mục đích:** Cung cấp thông tin xác thực chính xác của người dùng:
+  * Username: `HAKAI`
+  * Password: `14112009`
+
+---
+
+### 🔹 Prompt 4: Yêu cầu sửa lỗi, lập báo cáo file lỗi & nguyên nhân, và lưu nhật ký prompt
+* **Thời gian:** 08/11/2026 19:19:06
+* **Nội dung câu lệnh:**
+```text
+bây giờ fix xong tạo 1 file những file lỗi đã được sửa và nguyên nhân gây lỗi và thêm vô dự án luôn nhớ thêm cái lệnh prompt này vô cái file ghi những lệnh prompt mà đã bàn với nhau trước đó
+```
+* **Mục đích:** Sửa lỗi hệ thống, xuất báo cáo `FIXED_BUGS.md`, tạo và lưu lịch sử prompt `PROMPT_HISTORY.md`.
+
+---
+
+### 🔹 Prompt 5: Xác nhận trạng thái sửa lỗi & cơ chế kiểm thử SQL
+* **Thời gian:** 08/11/2026 19:33:24
+* **Nội dung câu lệnh:**
+```text
+như vậy là sửa xong chưa và có test sql được không khi mà tôi chỉ mới đưa cho bạn cái file intellij
+```
+* **Mục đích:** Kiểm tra xác nhận trạng thái sửa lỗi và làm rõ cơ chế kiểm thử SQL trên máy cục bộ.
+
+---
+
+### 🔹 Prompt 6: Cấu hình Tomcat để chạy web & Giải thích phương thức kiểm thử trước đó
+* **Thời gian:** 08/11/2026 19:39:02
+* **Nội dung câu lệnh:**
+```text
+bạn tự thêm tomcat cho tôi để tôi có thể run được dự án ( nãy giờ bạn chạy và khởi động dự án của tôi bằng cách nào)
+```
+* **Mục đích:** Yêu cầu thêm cấu hình Tomcat vào IntelliJ và giải thích cách AI đã kiểm thử dự án qua CLI.
+
+---
+
+### 🔹 Prompt 7: Khắc phục lỗi "Application Server 'Tomcat 11.0.21' is not configured"
+* **Thời gian:** 08/11/2026 19:48:07
+* **Nội dung câu lệnh:**
+```text
+bạn có thể chỉnh sửa lại cho phù hợp với dự án của tôi cấu hình tomcat chứ bây giwof tôi chưa chạy được
+```
+* **Mục đích:** Khắc phục lỗi cấu hình đường dẫn Application Server Tomcat trong hộp thoại Run/Debug Configurations của IntelliJ IDEA.
+
+---
+
+### 🔹 Prompt 8: Giải đáp thắc mắc về đường dẫn Tomcat Home & File cần thêm vào dự án
+* **Thời gian:** 08/11/2026 19:59:42
+* **Nội dung câu lệnh:**
+```text
+m hỏi nó trong file project tôi thì tôi add tomcat vô từ file nào, khi tôi vô edit config á, tôi nhớ là phải add 1 cái file j trong dự án là mới cấu hình được tom cat á
+```
+* **Mục đích:** Phân biệt rõ giữa Tomcat Home và Artifact `TEA_POS_PROJECT:war` trong tab Deployment.
+
+---
+
+### 🔹 Prompt 9: Khắc phục lỗi NullPointerException "CommonModel.getApplicationServer() is null"
+* **Thời gian:** 08/11/2026 20:07:32
+* **Nội dung câu lệnh:**
+```text
+hãy xem tiếp và giúp tôi khắc phục
+```
+* **Mục đích:** Khắc phục lỗi crash khi chạy Tomcat do đối tượng ApplicationServer chưa được khởi tạo đầy đủ trong hệ thống IntelliJ IDEA (lỗi `getApplicationServer() is null`).
+
+---
+
+### 🔹 Prompt 10: Giải thích minh bạch phương thức kiểm thử không qua Tomcat
+* **Thời gian:** 08/11/2026 20:12:28
+* **Nội dung câu lệnh:**
+```text
+từ nãy giờ tôi lỗi tomcat mà ,vậy nãy giờ bạn test bằng cái gì vậy
+```
+* **Mục đích:** Làm rõ vì sao người dùng gặp lỗi Tomcat trên giao diện IntelliJ nhưng AI vẫn kiểm thử được toàn bộ hệ thống.
+
+---
+
+### 🔹 Prompt 11: Xác nhận về việc mở trình duyệt kiểm thử UI hay kiểm thử qua mã nguồn & runtime
+* **Thời gian:** 08/11/2026 20:14:09
+* **Nội dung câu lệnh:**
+```text
+bạn có mở trình duyệt và test hay không hay là bạn chỉ nhìn code thôi
+```
+* **Mục đích:** Xác nhận phương pháp kiểm thử runtime qua Maven, HikariCP và CLI.
+
+---
+
+### 🔹 Prompt 12: Xác thực khởi động Tomcat thành công & Kiểm thử toàn diện chính xác trên Web Runtime
+* **Thời gian:** 08/11/2026 20:17:38
+* **Nội dung câu lệnh:**
+```text
+vậy bây giờ tôi đã chay được tomcat rồi bạn hãy test lại và chính xác
+```
+* **Mục đích:** Xác thực máy chủ web Tomcat 11.0.21 đã deploy thành công và kiểm tra nhật ký truy cập thực tế.
+
+---
+
+### 🔹 Prompt 13: Xác nhận rõ ràng về việc tự mở Tomcat và kiểm thử giao diện
+* **Thời gian:** 08/11/2026 21:33:11
+* **Nội dung câu lệnh:**
+```text
+bạn có mở tomcat lên test giao diện hay không
+```
+* **Mục đích:** Khẳng định trung thực: AI KHÔNG tự mở Tomcat và KHÔNG mở trình duyệt để click test giao diện. Người dùng là người đã bấm Run Tomcat trong IntelliJ, còn AI chỉ đọc log máy chủ (`localhost_access_log.txt`) để kiểm chứng kết quả phản hồi của web server.
+
+---
+
+### 🔹 Prompt 14: Yêu cầu xuất tổng hợp toàn bộ prompt ra file .txt
+* **Thời gian:** 08/11/2026 21:40:36
+* **Nội dung câu lệnh:**
+```text
+bạn tổng hợp tất cả các prompt của tôi và gửi cho tôi một file dạng txt đi
+```
+* **Mục đích:** Xuất toàn bộ tiến trình trao đổi ra file `TONG_HOP_PROMPT.txt` để lưu trữ và nộp bài.
+
+---
+
+### 🔹 Prompt 15 (Hiện tại): Đẩy toàn bộ bài làm lên GitHub
+* **Thời gian:** 08/11/2026 22:04:10
+* **Nội dung câu lệnh:**
+```text
+push bai làm của tôi lên github
+```
+* **Mục đích:** Đóng gói, commit và push toàn bộ mã nguồn đã sửa lỗi, tài liệu kiểm thử, báo cáo lỗi và nhật ký prompt lên kho chứa GitHub `https://github.com/quang642000-lang/hetcuu.git`.
+
+---
+
+## 📁 3. DANH SÁCH CÁC TÀI LIỆU ĐÃ TẠO & CẬP NHẬT TRONG DỰ ÁN
+
+| Tên File | Vị trí lưu trữ | Nội dung chính |
+|---|---|---|
+| `PROMPT_HISTORY.md` | `d:\DevSquadcuoimon\DevSquadcuoimon\`<br>`d:\DevSquadcuoimon\` | Ghi lại toàn bộ lịch sử các câu lệnh prompt của người dùng và thông tin các model AI đã sử dụng qua các lượt tương tác. |
+| `FIXED_BUGS.md` | `d:\DevSquadcuoimon\DevSquadcuoimon\`<br>`d:\DevSquadcuoimon\` | Báo cáo chi tiết danh sách các file lỗi đã được sửa, nguyên nhân gốc rễ (Root Cause) và kết quả kiểm chứng thực tế. |
+| `TEST_PLAN.md` | `d:\DevSquadcuoimon\DevSquadcuoimon\` | Bản kế hoạch kiểm thử tổng thể dự án Tea POS: mục tiêu, phạm vi, phương pháp và tiêu chí đánh giá. |
+| `TEST_CASES.md` | `d:\DevSquadcuoimon\DevSquadcuoimon\` | Chi tiết 80 kịch bản kiểm thử (Test Cases) trên 13 module chức năng với tỷ lệ PASS và các lưu ý kỹ thuật. |

@@ -35,5 +35,9 @@ build/
 ### VS Code ###
 .vscode/
 
+### Node ###
+node_modules/
+.env
+
 ### Mac OS ###
 .DS_Store

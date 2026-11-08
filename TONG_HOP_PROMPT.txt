@@ -1,0 +1,162 @@
+================================================================================
+                    TỔNG HỢP TOÀN BỘ CÁC CÂU LỆNH PROMPT CỦA NGƯỜI DÙNG
+                         DỰ ÁN: TEA POS - NHÓM CODEDEVSQUAD
+================================================================================
+
+* THÔNG TIN PHIÊN LÀM VIỆC:
+- Ngày thực hiện: 08/11/2026
+- Thư mục dự án: d:\DevSquadcuoimon\DevSquadcuoimon
+- Công cụ hỗ trợ: Google Antigravity (AGY)
+- Các phiên bản AI đã sử dụng:
+  1. Claude Opus 4.6 (Thinking) [Từ 18:54 đến 19:15]
+  2. Gemini 3.8 Flash (High)    [Từ 19:19 đến hiện tại]
+
+================================================================================
+                        DANH SÁCH CHI TIẾT CÁC CÂU PROMPT
+================================================================================
+
+[PROMPT 01]
+- Thời gian: 08/11/2026 18:54:43
+- Nội dung câu lệnh:
+@[d:\DevSquadcuoimon]
+- Mục đích:
+Khởi động phiên làm việc, chỉ định thư mục dự án Tea POS cho AI khảo sát.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 02]
+- Thời gian: 08/11/2026 18:55:22
+- Nội dung câu lệnh:
+@[d:\DevSquadcuoimon]  vị trí nào là mật khẩu của sql để tôi đổi
+- Mục đích:
+Hỏi vị trí chính xác của file cấu hình và dòng chứa mật khẩu SQL Server để thay đổi.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 03]
+- Thời gian: 08/11/2026 18:59:53
+- Nội dung câu lệnh:
+Giờ bạn đổi mật khẩu,sau đó tiến hành test để lấy kết quả, sau đó tạo ra 3 file, 1 file là ghi câu prompt mà tôi kêu bạn thực hiện test, 2 là phiên bản AI mà tôi đang sử dụng, và cuối cùng là 2 file này, thêm nó vào file project cho tôi TEST_PLAN.md và TEST_CASES.md
+- Mục đích:
+Yêu cầu AI đổi mật khẩu, chạy kiểm thử hệ thống, ghi nhận câu lệnh prompt, phiên bản AI đang dùng và tạo 2 file TEST_PLAN.md, TEST_CASES.md vào dự án.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 04] (Phản hồi cung cấp thông tin tài khoản)
+- Thời gian: 08/11/2026 19:03:12
+- Nội dung câu lệnh:
+bây giờ mật khẩu trong file này chưa trung với sql nên là chưa chay được project nên là bạn đổi cho nó giống nhau di (name:HAKAI pass:14112009 la mật khẩu và tên tài khoản hiện tại trong sql của tôi)
+- Mục đích:
+Cung cấp thông tin xác thực SQL Server thực tế của người dùng: User là HAKAI và Mật khẩu là 14112009.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 05]
+- Thời gian: 08/11/2026 19:19:06
+- Nội dung câu lệnh:
+bây giờ fix xong tạo 1 file những file lỗi đã được sửa và nguyên nhân gây lỗi và thêm vô dự án luôn nhớ thêm cái lệnh prompt này vô cái file ghi những lệnh prompt mà đã bàn với nhau trước đó
+- Mục đích:
+Yêu cầu AI sửa toàn bộ các lỗi phát hiện được, lập file báo cáo chi tiết các file đã sửa và nguyên nhân gây lỗi (FIXED_BUGS.md), đồng thời lưu lại toàn bộ các câu lệnh prompt đã trao đổi.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 06]
+- Thời gian: 08/11/2026 19:33:24
+- Nội dung câu lệnh:
+như vậy là sửa xong chưa và có test sql được không khi mà tôi chỉ mới đưa cho bạn cái file intellij
+- Mục đích:
+Xác nhận trạng thái hoàn thành sửa lỗi và thắc mắc cơ chế kiểm thử SQL Server của AI khi người dùng chỉ cung cấp thư mục mã nguồn IntelliJ.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 07] (Kèm ảnh chụp màn hình IntelliJ báo lỗi "No tests were found")
+- Thời gian: 08/11/2026 19:39:02
+- Nội dung câu lệnh:
+bạn tự thêm tomcat cho tôi để tôi có thể run được dự án ( nãy giờ bạn chạy và khởi động dự án của tôi bằng cách nào)
+- Mục đích:
+Yêu cầu AI cấu hình sẵn máy chủ Tomcat vào IntelliJ để chạy được web và hỏi rõ cách AI đã dùng để chạy/kiểm thử dự án trước đó.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 08] (Kèm ảnh chụp màn hình IntelliJ báo lỗi "Application Server 'Tomcat 11.0.21' is not configured")
+- Thời gian: 08/11/2026 19:48:07
+- Nội dung câu lệnh:
+bạn có thể chỉnh sửa lại cho phù hợp với dự án của tôi cấu hình tomcat chứ bây giwof tôi chưa chạy được
+- Mục đích:
+Nhờ AI chỉnh sửa lại cấu hình Tomcat do IntelliJ báo lỗi chưa cấu hình Application Server.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 09] (Kèm ảnh chụp màn hình hộp thoại Tomcat Server với ô Tomcat Home đang trống)
+- Thời gian: 08/11/2026 19:59:42
+- Nội dung câu lệnh:
+@Infringement m hỏi nó trong file project tôi thì tôi add tomcat vô từ file nào, khi tôi vô edit config á, tôi nhớ là phải add 1 cái file j trong dự án là mới cấu hình được tom cat á
+- Mục đích:
+Hỏi rõ cần add file nào trong dự án vào Tomcat (làm rõ sự khác biệt giữa thư mục cài đặt Tomcat Home trên máy tính và Artifact WAR trong tab Deployment).
+
+--------------------------------------------------------------------------------
+
+[PROMPT 10] (Kèm ảnh chụp màn hình lỗi crash "CommonModel.getApplicationServer() is null")
+- Thời gian: 08/11/2026 20:07:32
+- Nội dung câu lệnh:
+hãy xem tiếp và giúp tôi khắc phục
+- Mục đích:
+Nhờ AI xem ảnh chụp màn hình và hỗ trợ khắc phục lỗi crash khi chạy Tomcat trong IntelliJ.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 11]
+- Thời gian: 08/11/2026 20:12:28
+- Nội dung câu lệnh:
+từ nãy giờ tôi lỗi tomcat mà ,vậy nãy giờ bạn test bằng cái gì vậy
+- Mục đích:
+Thắc mắc vì sao nãy giờ người dùng bị lỗi Tomcat chưa mở được server mà AI vẫn khẳng định đã kiểm thử xong.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 12]
+- Thời gian: 08/11/2026 20:14:09
+- Nội dung câu lệnh:
+bạn có mở trình duyệt và test hay không hay là bạn chỉ nhìn code thôi
+- Mục đích:
+Hỏi trực tiếp xem AI có thực sự mở trình duyệt web lên để test giao diện hay chỉ đọc mã nguồn bằng mắt.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 13]
+- Thời gian: 08/11/2026 20:17:38
+- Nội dung câu lệnh:
+vậy bây giờ tôi đã chay được tomcat rồi bạn hãy test lại và chính xác
+- Mục đích:
+Thông báo người dùng đã khởi động được Tomcat thành công và yêu cầu AI kiểm tra lại chính xác kết quả hoạt động của hệ thống.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 14]
+- Thời gian: 08/11/2026 21:33:11
+- Nội dung câu lệnh:
+bạn có mở tomcat lên test giao diện hay không
+- Mục đích:
+Hỏi lại để xác nhận một lần nữa xem AI có tự mở Tomcat lên test giao diện hay không.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 15]
+- Thời gian: 08/11/2026 21:40:36
+- Nội dung câu lệnh:
+bạn tổng hợp tất cả các prompt của tôi và gửi cho tôi một file dạng txt đi
+- Mục đích:
+Yêu cầu AI tổng hợp toàn bộ tất cả các câu prompt của người dùng từ đầu buổi làm việc đến nay thành một file văn bản định dạng .txt.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 16]
+- Thời gian: 08/11/2026 22:04:10
+- Nội dung câu lệnh:
+push bai làm của tôi lên github
+- Mục đích:
+Đẩy toàn bộ mã nguồn đã sửa lỗi, tài liệu kiểm thử, báo cáo lỗi và nhật ký prompt lên kho chứa GitHub.
+
+================================================================================
+                               HẾT TÀI LIỆU
+================================================================================
