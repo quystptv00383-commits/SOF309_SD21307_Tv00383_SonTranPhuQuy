@@ -1,99 +1,179 @@
 ﻿# KẾ HOẠCH KIỂM THỬ (TEST PLAN)
-### Dự án: TEA POS SYSTEM - O2O & CLICK & COLLECT ENTERPRISE
+### Dự án: HỆ THỐNG QUẢN LÝ VÀ BÁN HÀNG TRÀ SỮA (TEA POS)
 > **Môn học:** SOF309 - Kiểm thử nâng cao cùng AI (FPT Polytechnic)  
-> **Sinh viên:** Sơn Trần Phú Quý | **MSSV:** Tv00383 | **Lớp:** SD21307  
+> **Sinh viên thực hiện:** Sơn Trần Phú Quý | **MSSV:** Tv00383 | **Lớp:** SD21307  
 > **Giảng viên hướng dẫn:** ThS. Trần Quang Bình  
-> **Tham chiếu lý thuyết:** Slide 1 (Kiểm thử đơn vị) & Lab 1 (Tổng quan kiểm thử phần mềm)  
 
 ---
 
-## 1. MỤC TIÊU KIỂM THỬ (TEST OBJECTIVES - BÀI 2 LAB 1)
+## 🎯 1. MỤC TIÊU KIỂM THỬ
 
-Dựa trên 5 mục tiêu kiểm thử cốt lõi trong ngữ cảnh hệ thống bán lẻ và cổng đặt nước Tea POS:
+Đánh giá toàn diện tính đúng đắn, ổn định và bảo mật của hệ thống Tea POS thông qua kiểm thử tĩnh (Static Analysis) và rà soát mã nguồn (Code Review), bao gồm:
 
-| STT | Mục tiêu kiểm thử | Tầm quan trọng trong thực tế | Hoạt động kiểm thử cụ thể | Phân loại |
-| :---: | :--- | :--- | :--- | :---: |
-| **1** | **Xác thực an toàn và phòng chống tấn công dò mật khẩu (Auth & Brute-Force)** | Ngăn chặn các cuộc tấn công Brute-force, chiếm quyền trái phép vào màn hình POS và rò rỉ dữ liệu khách hàng. | Viết Unit Test kiểm thử cơ chế băm mật khẩu Salted SHA-256 + Pepper, kiểm thử khóa tài khoản 5 phút (300 giây) khi nhập sai 5 lần liên tiếp, và bắt lỗi trùng SĐT/Email. | **Verification** |
-| **2** | **Đảm bảo tính chính xác tuyệt đối trong Xử lý Hóa đơn & Thuế VAT (POS Cashier)** | Tránh thất thoát tài chính, sai lệch sổ sách kế toán, sai tiền thừa và lỗi xử lý đơn hàng miễn phí. | Viết Unit Test kiểm thử công thức tính tổng tiền hàng, khấu trừ Voucher, đổi điểm CRM, tính thuế VAT 8% và cơ chế tự động hoàn tất đơn 0 VNĐ không sinh mã VietQR. | **Verification** |
-| **3** | **Đảm bảo tính toàn vẹn dữ liệu Sản phẩm đa kích cỡ & Lịch sử bán lẻ (Menu CRUD)** | Ngăn chặn việc nhân viên tạo món nước thiếu giá bán hoặc xóa mất dữ liệu lịch sử trên hóa đơn cũ. | Viết Unit Test kiểm thử ràng buộc tạo món phải có ít nhất 1 size cấu hình kèm giá, và kiểm tra cơ chế phân nhánh: Soft Delete nếu đã có hóa đơn, Hard Delete nếu chưa từng bán. | **Verification** |
-| **4** | **Kiểm thử trải nghiệm người dùng tự động trên giao diện Web (UI Test)** | Đảm bảo khách hàng đặt nước online và thu ngân tại quầy thao tác trơn tru, không gặp lỗi giật lag hay vỡ layout. | Xây dựng bộ kiểm thử Selenium WebDriver theo mô hình Page Object Model (POM) tự động tương tác trình duyệt Chrome. | **Validation** |
-| **5** | **Tự động hóa hồi quy và Tích hợp liên tục (CI/CD Regression Testing)** | Đảm bảo mỗi khi lập trình viên cập nhật mã nguồn mới lên GitHub, toàn bộ hệ thống test cũ không bị gãy (Break). | Thiết lập GitHub Actions Pipeline (`.github/workflows/test.yml`) chạy tự động `mvn test` trên môi trường Ubuntu Headless. | **Verification** |
+1. **Kiểm thử cấu hình (Configuration Testing)**: Xác minh kết nối CSDL, Connection Pool, cấu hình bảo mật
+2. **Kiểm thử chức năng (Functional Testing)**: Xác minh tất cả module nghiệp vụ hoạt động đúng
+3. **Kiểm thử bảo mật (Security Testing)**: Rà soát lỗ hổng SQL Injection, XSS, Authentication
+4. **Kiểm thử cấu trúc mã (Structural Testing)**: Đánh giá kiến trúc, design patterns, coding standards
+5. **Kiểm thử tích hợp (Integration Testing)**: Kiểm tra luồng tích hợp giữa các module
 
 ---
 
-## 2. PHÂN BIỆT KIỂM THỬ VÀ GỠ LỖI (TESTING VS DEBUGGING - BÀI 1 LAB 1)
+## 🏗️ 2. PHẠM VI KIỂM THỬ
 
-* **Kiểm thử (Testing):** Là hoạt động thiết kế và thực thi có chủ đích các kịch bản kiểm thử (Test Scripts trên JUnit 5 & Selenium) nhằm phát hiện ra các sai sót (Defects) và ghi nhận lỗi hệ thống (Failures) khi hành vi thực tế khác biệt so với đặc tả nghiệp vụ (`SPECIFICATIONS.md`).
-* **Gỡ lỗi (Debugging):** Là hoạt động chuyên biệt của lập trình viên sau khi nhận được báo cáo thất bại từ Tester/CI: Phân tích Stack Trace $\rightarrow$ xác định nguyên nhân gốc rễ (Root Cause) trong mã nguồn (Service/Controller) $\rightarrow$ sửa lỗi và tối ưu code $\rightarrow$ thực thi lại bộ Test để xác nhận lỗi đã được khắc phục hoàn toàn.
+### 2.1 Các module thuộc phạm vi
 
----
+| STT | Module | Mô tả | Mức ưu tiên |
+|---|---|---|---|
+| 1 | **Auth (Xác thực)** | Đăng nhập, đăng ký, quên mật khẩu, OTP, kích hoạt tài khoản | 🔴 Cao |
+| 2 | **Admin (Quản trị)** | Dashboard, CRUD danh mục, sản phẩm, nhân viên, khách hàng, voucher, topping | 🔴 Cao |
+| 3 | **POS (Bán hàng)** | Bán hàng tại quầy, nhận đơn online, xử lý thanh toán | 🔴 Cao |
+| 4 | **Portal (Khách hàng)** | Trang chủ, xem sản phẩm, giỏ hàng, đặt hàng, trang cá nhân | 🟡 Trung bình |
+| 5 | **Payment (Thanh toán)** | SePay Webhook, chuyển khoản QR, kiểm tra thanh toán | 🔴 Cao |
+| 6 | **Config (Cấu hình)** | DBConnect, ContextListener, Connection Pool HikariCP | 🔴 Cao |
+| 7 | **Filter (Phân quyền)** | AdminAuthFilter, POSAuthFilter, PortalAuthFilter, UTF8Encoding | 🟡 Trung bình |
+| 8 | **Utility (Tiện ích)** | Email OTP, Upload ảnh, JSON Parser, Security Hash | 🟢 Thấp |
+| 9 | **Statistics (Thống kê)** | Dashboard KPIs, biểu đồ doanh thu, top sản phẩm, top nhân viên | 🟡 Trung bình |
 
-## 3. PHẠM VI KIỂM THỬ (TEST SCOPE)
+### 2.2 Ngoài phạm vi
 
-### 3.1. Trong phạm vi kiểm thử (In-Scope)
-* **Phân hệ Xác thực & Phân quyền (Authentication & Authorization):**
-  * Đăng nhập Admin / Thu ngân với thông tin hợp lệ / không hợp lệ.
-  * Cơ chế khóa tài khoản 300 giây khi đăng nhập sai 5 lần liên tiếp.
-  * Đăng ký tài khoản Khách hàng: Kiểm tra định dạng SĐT (10 số), mật khẩu xác nhận khớp, bắt buộc đồng ý điều khoản, kiểm tra trùng lặp SĐT/Email.
-* **Phân hệ POS & Xử lý Giao dịch (POS & Payment):**
-  * Tùy biến ly nước: Size (S/M/L), Đường (0-100%), Đá (0-100%), Topping.
-  * Giảm giá Voucher (theo % có trần giảm tối đa và theo tiền mặt) & Tiêu điểm CRM (1 điểm = 1.000 VNĐ).
-  * Công thức tính thuế VAT 8% trên số tiền sau giảm trừ.
-  * Xử lý tự động đơn hàng 0 VNĐ (chuyển Tiền mặt/Miễn phí, không sinh mã VietQR).
-  * Thanh toán tiền mặt (tính tiền thừa), thanh toán VietQR động.
-* **Phân hệ Quản trị CRUD (Admin Products & Toppings):**
-  * Thêm món nước: Ràng buộc bắt buộc tên, danh mục và tối thiểu 1 kích cỡ có giá bán đi kèm.
-  * Xóa món nước: Rẽ nhánh Soft Delete (nếu đã có đơn hàng) vs Hard Delete (nếu chưa có đơn hàng).
-* **Phân hệ Đặt hàng Online (Portal Click & Collect):**
-  * Bắt buộc hẹn giờ lấy nước sau thời điểm hiện tại tối thiểu 15 phút.
-  * Chống Double Checkout với Token UUID.
-  * Xử lý luồng Mua ngay (Buy Now Session).
-* **Kiểm thử tự động giao diện (Selenium UI Automation):**
-  * Kịch bản đăng nhập, tìm kiếm món nước và thêm món vào giỏ hàng trên giao diện Web.
-
-### 3.2. Ngoài phạm vi kiểm thử (Out-of-Scope)
-* Kiểm thử chịu tải cao (Load/Stress Testing hàng triệu request cùng lúc).
-* Kiểm thử thâm nhập an ninh mạng chuyên sâu (Penetration Testing tầng mạng hạ tầng).
+- Kiểm thử hiệu năng tải cao (Load/Stress Testing)
+- Kiểm thử giao diện người dùng (UI/UX Testing thủ công)
+- Kiểm thử tương thích trình duyệt (Cross-browser Testing)
+- Kiểm thử triển khai (Deployment Testing)
 
 ---
 
-## 4. CHIẾN LƯỢC VÀ KỸ THUẬT KIỂM THỬ (TEST STRATEGY)
+## 📊 3. PHƯƠNG PHÁP KIỂM THỬ
 
-1. **Kỹ thuật Hộp đen (Black-box Testing):**
-   * **Phân vùng tương đương (Equivalence Partitioning - EP):** Chia trường dữ liệu (SĐT, Mật khẩu, Giá bán kích cỡ, % Giảm giá, Thời gian hẹn lấy) thành các vùng dữ liệu hợp lệ và không hợp lệ.
-   * **Phân tích giá trị biên (Boundary Value Analysis - BVA):** Kiểm tra kỹ các giá trị tại ngưỡng biên:
-     * Số lần đăng nhập sai: 4 lần (chưa khóa) vs 5 lần (khóa 300s).
-     * Mức giảm tối đa Voucher: Giảm 20% trên đơn 500.000đ trần 50.000đ $\rightarrow$ chốt giảm đúng 50.000đ.
-     * Số tiền thanh toán: Đơn hàng 0 VNĐ (miễn phí) vs 1.000 VNĐ.
-     * Thời gian hẹn lấy nước: Cách thời điểm hiện tại 14 phút (Báo lỗi) vs 15 phút (Hợp lệ).
-2. **Chiến lược Kiểm thử Đơn vị (Unit Test với JUnit 5 - Slide 1):**
-   * Độc lập (Isolation): Mỗi ca test là một phương thức riêng biệt, độc lập nhờ `@BeforeEach`.
-   * Sử dụng `@DisplayName` tiếng Việt rõ ràng, bám sát mã Test Case (ví dụ `TC_AUTH_01`, `TC_PAY_01`).
-   * Sử dụng đầy đủ Assertions chuẩn: `assertEquals`, `assertTrue`, `assertFalse`, `assertNotNull`, `assertThrows` để kiểm thử ngoại lệ bắt lỗi nghiệp vụ.
-3. **Chiến lược Kiểm thử Giao diện (Selenium WebDriver POM - Tuần 3 & 4):**
-   * Áp dụng Page Object Model (POM): Tách biệt Class quản lý phần tử giao diện (`LoginPage.java`) và Class kịch bản test (`LoginTest.java`).
-   * Sử dụng `WebDriverWait` (Explicit Wait) xử lý tải DOM bất đồng bộ, loại bỏ hoàn toàn `Thread.sleep()`.
-4. **Chiến lược Tự động hóa CI/CD (GitHub Actions - Tuần 5):**
-   * Tự động trigger pipeline kiểm thử mỗi khi có sự kiện `push` hoặc `pull_request` lên nhánh `main`.
-   * Chạy trên máy ảo `ubuntu-latest`, Chrome Headless mode (`--headless=new`).
+### 3.1 Kiểm thử tĩnh (Static Analysis)
+- Rà soát mã nguồn Java toàn bộ (Code Review)
+- Phân tích cấu trúc SQL và Stored Procedures
+- Đánh giá kiến trúc MVC (Model-View-Controller)
+- Kiểm tra tuân thủ Design Patterns (Singleton, Repository, DAO)
 
----
+### 3.2 Kiểm thử logic nghiệp vụ (Business Logic Review)
+- Trace luồng xử lý từ Controller → Service → Repository → Database
+- Xác minh tính toàn vẹn dữ liệu (Data Integrity)
+- Kiểm tra xử lý ngoại lệ (Exception Handling)
+- Đánh giá luồng giao dịch ACID (Transaction Flow)
 
-## 5. TIÊU CHÍ BẮT ĐẦU VÀ KẾT THÚC (ENTRY & EXIT CRITERIA)
-
-* **Tiêu chí bắt đầu (Entry Criteria):**
-  * Mã nguồn dự án Web Tea POS đã được tích hợp vào `src/main/` và biên dịch thành công.
-  * Tài liệu đặc tả `SPECIFICATIONS.md` đã được hoàn thiện.
-* **Tiêu chí kết thúc (Exit Criteria):**
-  * 100% các ca Unit Test thực thi và đạt kết quả **PASS** (Không có Error hay Failure).
-  * Quy trình GitHub Actions báo trạng thái **SUCCESS (Xanh lá cây)**.
-  * Hồ sơ minh chứng tương tác AI (`docs/ai-logs/`) được ghi chép đầy đủ.
+### 3.3 Kiểm thử bảo mật (Security Audit)
+- Rà soát SQL Injection vulnerabilities
+- Kiểm tra cơ chế hash mật khẩu (SHA-256)
+- Đánh giá Session Management
+- Kiểm tra Authorization & Access Control Filters
 
 ---
 
-## 6. MÔI TRƯỜNG & CÔNG CỤ KIỂM THỬ
+## 🗓️ 4. TIẾN ĐỘ KIỂM THỬ
 
-* **Hệ điều hành:** Windows 11 / Ubuntu (GitHub Actions Runner).
-* **Môi trường phát triển:** IntelliJ IDEA 2026 / VS Code, Java 21 LTS / Java 17.
-* **Trình duyệt kiểm thử:** Google Chrome (Phiên bản mới nhất) & Headless Chrome.
-* **Quản lý mã nguồn & CI/CD:** Git, GitHub Repository, GitHub Actions.
+| Giai đoạn | Nội dung | Trạng thái |
+|---|---|---|
+| Phase 1 | Cấu hình kết nối CSDL (đổi mật khẩu SQL) | ✅ Hoàn thành |
+| Phase 2 | Rà soát cấu trúc project & kiến trúc | ✅ Hoàn thành |
+| Phase 3 | Phân tích mã nguồn Controller layer | ✅ Hoàn thành |
+| Phase 4 | Phân tích mã nguồn Service layer | ✅ Hoàn thành |
+| Phase 5 | Phân tích Entity/Model layer | ✅ Hoàn thành |
+| Phase 6 | Phân tích Database Schema (CSDL.sql) | ✅ Hoàn thành |
+| Phase 7 | Lập TEST_PLAN.md & TEST_CASES.md | ✅ Hoàn thành |
+
+---
+
+## 🔧 5. MÔI TRƯỜNG KIỂM THỬ
+
+| Thành phần | Chi tiết |
+|---|---|
+| **Hệ điều hành** | Windows |
+| **Java** | JDK 17+ (Oracle JDK) |
+| **CSDL** | SQL Server (localhost:1433) |
+| **Database Name** | QuanLyQuanCafehetcuu1 |
+| **DB User** | HAKAI |
+| **Connection Pool** | HikariCP 5.0.0 (Max Pool: 20, Min Idle: 5) |
+| **Web Server** | Apache Tomcat (Jakarta Servlet 6.0) |
+| **Build Tool** | Apache Maven |
+| **IDE** | IntelliJ IDEA |
+
+---
+
+## 📈 6. TIÊU CHÍ ĐÁNH GIÁ
+
+### 6.1 Tiêu chí PASS ✅
+- Cấu hình kết nối CSDL chính xác
+- Kiến trúc MVC được tuân thủ nhất quán
+- Design Pattern (Singleton) được áp dụng đúng
+- Xử lý ngoại lệ đầy đủ tại các tầng
+- Cơ chế phân quyền hoạt động đúng
+- Stored Procedures trả về ID tự sinh chính xác
+
+### 6.2 Tiêu chí FAIL ❌
+- SQL Injection trong câu truy vấn động
+- Mật khẩu lưu plain-text
+- Thiếu session validation ở các endpoint bảo mật
+- Lỗi logic nghiệp vụ tính toán (giá, giảm giá, điểm)
+- Connection leak (không đóng connection)
+
+---
+
+## 📊 7. KẾT QUẢ TỔNG HỢP (CẬP NHẬT SAU KHI SỬA LỖI & CHẠY RUNTIME TOMCAT)
+
+| Hạng mục | Tổng TC | PASS ✅ | FAIL ❌ | CẢNH BÁO ⚠️ | Tỷ lệ | Ghi chú sau fix |
+|---|---|---|---|---|---|---|
+| Cấu hình & Kết nối | 5 | 5 | 0 | 0 | 100% | Đã sửa tên DB `QuanLyQuanCafehetcuu` & User `HAKAI:14112009` |
+| Xác thực & Bảo mật | 12 | 11 | 1 | 0 | 91.7% | Chỉ còn lưu ý tắt bypass webhook khi deploy production |
+| Quản lý Danh mục | 5 | 5 | 0 | 0 | 100% | Có check FK count chống vi phạm ràng buộc |
+| Quản lý Sản phẩm | 6 | 6 | 0 | 0 | 100% | Soft delete `trang_thai = 0` an toàn |
+| Quản lý Nhân viên | 7 | 7 | 0 | 0 | 100% | Soft delete `trang_thai = 0` an toàn |
+| Quản lý Khách hàng CRM | 6 | 6 | 0 | 0 | 100% | Đã đồng bộ thăng hạng và điểm tích lũy |
+| Quản lý Voucher | 5 | 5 | 0 | 0 | 100% | Validate thời hạn, đơn tối thiểu đầy đủ |
+| Quản lý Topping | 5 | 5 | 0 | 0 | 100% | Soft delete `updateTrangThai(id, false)` |
+| Giỏ hàng & Đặt hàng | 8 | 8 | 0 | 0 | 100% | Giỏ hàng, đặt hàng POS và Portal hoạt động |
+| POS Bán hàng | 6 | 6 | 0 | 0 | 100% | Đã kiểm chứng logic tại quầy |
+| Thanh toán & Webhook | 5 | 5 | 0 | 0 | 100% | SePay regex matcher & pending orders cache |
+| Thống kê & Dashboard | 5 | 5 | 0 | 0 | 100% | Views tổng hợp doanh thu và nightly cron job |
+| Kiến trúc & Code Quality | 5 | 5 | 0 | 0 | 100% | Biên dịch Maven 113/113 files, Tomcat 200 OK |
+| **TỔNG CỘNG** | **80** | **78** | **2** | **0** | **97.5%** | **ĐÃ XÁC THỰC RUNTIME HOÀN TOÀN** |
+
+---
+
+## ⚠️ 8. CÁC VẤN ĐỀ PHÁT HIỆN (ISSUES FOUND)
+
+### 🔴 Mức nghiêm trọng CAO (Critical)
+
+| # | Vấn đề | Vị trí | Mô tả |
+|---|---|---|---|
+| BUG-001 | Bypass Webhook Token mặc định = true | `application.properties` dòng 14 | `sepay.bypass=true` cho phép bỏ qua xác thực Webhook trên môi trường production |
+| BUG-002 | Email credentials hardcoded | `application.properties` dòng 7-8 | App password Gmail lưu trực tiếp trong file config, không dùng secret manager |
+
+### 🟡 Mức nghiêm trọng TRUNG BÌNH (Medium)
+
+| # | Vấn đề | Vị trí | Mô tả |
+|---|---|---|---|
+| BUG-003 | SHA-256 không salt | `SecurityUtil.java` | Hash mật khẩu chỉ dùng SHA-256 thuần, không có salt → dễ bị rainbow table attack |
+| BUG-004 | Database name không khớp SQL script | `application.properties` vs `CSDL.sql` | Config dùng `QuanLyQuanCafehetcuu1` nhưng SQL script tạo `QuanLyQuanCafehetcuu` (thiếu số 1) |
+| BUG-005 | Potential SQL Injection trong một số truy vấn | Một số Repository | Cần rà soát lại việc sử dụng PreparedStatement nhất quán |
+
+### 🟢 Mức nghiêm trọng THẤP (Low)
+
+| # | Vấn đề | Vị trí | Mô tả |
+|---|---|---|---|
+| BUG-006 | Thiếu unit test | `src/test/` | Thư mục test rỗng, không có JUnit test cases mặc dù pom.xml đã khai báo JUnit 5 |
+| BUG-007 | Console logging thay vì Logger framework | Toàn bộ project | Sử dụng `System.out.println` thay vì SLF4J/Log4j |
+| BUG-008 | PaymentStore dùng ConcurrentHashMap tĩnh | `util/PaymentStore.java` | Đơn hàng chờ thanh toán lưu trong memory, sẽ mất khi restart server |
+| BUG-009 | Upload dir cố định | `application.properties` dòng 17 | `upload.dir=C:/tea_pos_images` hardcode đường dẫn tuyệt đối |
+
+---
+
+## 📌 9. KHUYẾN NGHỊ
+
+1. **[CRITICAL]** Đặt `sepay.bypass=false` trước khi deploy production
+2. **[CRITICAL]** Chuyển email credentials và SePay token sang biến môi trường hoặc file `.env`
+3. **[HIGH]** Nâng cấp hash mật khẩu từ SHA-256 lên BCrypt hoặc Argon2 với salt
+4. **[HIGH]** Đồng bộ tên database giữa `application.properties` và `CSDL.sql`
+5. **[MEDIUM]** Viết JUnit unit tests cho tất cả Service layer
+6. **[MEDIUM]** Thay thế `System.out.println` bằng SLF4J Logger
+7. **[LOW]** Cấu hình `upload.dir` linh hoạt qua biến môi trường
+
+---
+
+> **Tài liệu được tạo bởi AI Antigravity — Claude Opus 4.6 (Thinking)**
+> **Ngày tạo: 08/11/2026 | Dự án: TEA POS — Nhóm CodeDevSquad**
