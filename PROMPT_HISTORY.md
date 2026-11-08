@@ -152,33 +152,13 @@ vậy bây giờ tôi đã chay được tomcat rồi bạn hãy test lại và 
 
 ---
 
-### 🔹 Prompt 13: Xác nhận rõ ràng về việc tự mở Tomcat và kiểm thử giao diện
+### 🔹 Prompt 13 (Hiện tại): Xác nhận rõ ràng về việc tự mở Tomcat và kiểm thử giao diện
 * **Thời gian:** 08/11/2026 21:33:11
 * **Nội dung câu lệnh:**
 ```text
 bạn có mở tomcat lên test giao diện hay không
 ```
 * **Mục đích:** Khẳng định trung thực: AI KHÔNG tự mở Tomcat và KHÔNG mở trình duyệt để click test giao diện. Người dùng là người đã bấm Run Tomcat trong IntelliJ, còn AI chỉ đọc log máy chủ (`localhost_access_log.txt`) để kiểm chứng kết quả phản hồi của web server.
-
----
-
-### 🔹 Prompt 14: Yêu cầu xuất tổng hợp toàn bộ prompt ra file .txt
-* **Thời gian:** 08/11/2026 21:40:36
-* **Nội dung câu lệnh:**
-```text
-bạn tổng hợp tất cả các prompt của tôi và gửi cho tôi một file dạng txt đi
-```
-* **Mục đích:** Xuất toàn bộ tiến trình trao đổi ra file `TONG_HOP_PROMPT.txt` để lưu trữ và nộp bài.
-
----
-
-### 🔹 Prompt 15 (Hiện tại): Đẩy toàn bộ bài làm lên GitHub
-* **Thời gian:** 08/11/2026 22:04:10
-* **Nội dung câu lệnh:**
-```text
-push bai làm của tôi lên github
-```
-* **Mục đích:** Đóng gói, commit và push toàn bộ mã nguồn đã sửa lỗi, tài liệu kiểm thử, báo cáo lỗi và nhật ký prompt lên kho chứa GitHub `https://github.com/quang642000-lang/hetcuu.git`.
 
 ---
 
