@@ -152,13 +152,34 @@ vậy bây giờ tôi đã chay được tomcat rồi bạn hãy test lại và 
 
 ---
 
-### 🔹 Prompt 13 (Hiện tại): Xác nhận rõ ràng về việc tự mở Tomcat và kiểm thử giao diện
+### 🔹 Prompt 13: Xác nhận rõ ràng về việc tự mở Tomcat và kiểm thử giao diện
 * **Thời gian:** 08/11/2026 21:33:11
 * **Nội dung câu lệnh:**
 ```text
 bạn có mở tomcat lên test giao diện hay không
 ```
-* **Mục đích:** Khẳng định trung thực: AI KHÔNG tự mở Tomcat và KHÔNG mở trình duyệt để click test giao diện. Người dùng là người đã bấm Run Tomcat trong IntelliJ, còn AI chỉ đọc log máy chủ (`localhost_access_log.txt`) để kiểm chứng kết quả phản hồi của web server.
+* **Mục đích:** Khẳng định trung thực: AI KHÔNG tự mở Tomcat và KHÔNG mở trình duyệt để click test giao diện.
+
+---
+
+### 🔹 Prompt 14: Tổng hợp toàn bộ danh sách prompt thành file văn bản .txt
+* **Thời gian:** 08/11/2026 21:40:36
+* **Nội dung câu lệnh:**
+```text
+bạn tổng hợp tất cả các prompt của tôi và gửi cho tôi một file dạng txt đi
+```
+* **Mục đích:** Yêu cầu xuất toàn bộ lịch sử các câu lệnh prompt thành file `TONG_HOP_PROMPT.txt`.
+
+---
+
+### 🔹 Prompt 15 (Hiện tại): Đẩy toàn bộ mã nguồn & tài liệu lên kho lưu trữ GitHub
+* **Thời gian:** 08/11/2026 22:34:11
+* **Nội dung câu lệnh:**
+```text
+push bai làm của tôi lên github https://github.com/quystptv00383-commits/desktop-tutorial.git
+```
+* **Mục đích:** Đồng bộ hóa và đẩy toàn bộ source code, tài liệu kiểm thử, báo cáo sửa lỗi và nhật ký prompt lên kho GitHub `quystptv00383-commits/desktop-tutorial`.
+* **Kết quả:** Đã chuyển đổi remote sang kho mới, đồng bộ và đẩy thành công lên cả 2 nhánh `main` (nhánh mặc định của GitHub) và `master`.
 
 ---
 
