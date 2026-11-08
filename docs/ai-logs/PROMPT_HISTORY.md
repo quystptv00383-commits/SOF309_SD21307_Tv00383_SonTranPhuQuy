@@ -1,4 +1,4 @@
-# 📜 NHẬT KÝ CÁC CÂU LỆNH PROMPT & PHIÊN BẢN AI SỬ DỤNG
+﻿# 📜 NHẬT KÝ CÁC CÂU LỆNH PROMPT & PHIÊN BẢN AI SỬ DỤNG
 
 ---
 
@@ -203,6 +203,23 @@ cách nào để đổi tên trên này và hãy đổi theo cấu trúc như n�
 
 ---
 
+
+---
+
+### 🔹 Prompt 18: Tích hợp trọn bộ cấu trúc chuẩn từ Template của Thầy & Đẩy lên Repo chính thức
+* **Thời gian:** 08/11/2026 23:02:03
+* **Nội dung câu lệnh:**
+`	ext
+ban push code va lam theo đúng những yêu cầu này của thầy tôi https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy.git
+`
+* **Mục đích:** Tích hợp toàn diện theo đúng 5 bước hướng dẫn và cấu trúc thư mục chuẩn của môn SOF309 (Tuần 1: Y1 đến Y6):
+  1. Cấu hình lại pom.xml tích hợp sẵn JUnit 5, Selenium WebDriver 4, Maven Surefire Plugin cùng runtime Web Tea POS.
+  2. Chuẩn hóa thư mục docs/: SPECIFICATIONS.md, TEST_PLAN.md, TEST_CASES.md, HUONG_DAN_CHI_TIET_6_TUAN.md, FIXED_BUGS.md.
+  3. Xây dựng thư mục minh chứng AI docs/ai-logs/ ( 1_test_design_ai.md,  4_debug_logs_ai.md, PROMPT_HISTORY.md, TONG_HOP_PROMPT.txt) phục vụ đạt tiêu chí **Điểm A (Y6)**.
+  4. Đưa khung test mẫu src/test/java/com/poly/sof309/ (Unit test cho Controller SampleControllerTest & Selenium Page Object Model LoginPage, LoginTest).
+  5. Cấu hình workflow CI/CD GitHub Actions .github/workflows/test.yml tự động chạy mvn clean test.
+  6. Thực thi kiểm thử tự động tại local: BUILD SUCCESS (100% test pass).
+  7. Đồng bộ hóa và đẩy mã nguồn lên cả 2 nhánh main và master của kho GitHub chính thức: https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy.
 ## 📁 3. DANH SÁCH CÁC TÀI LIỆU ĐÃ TẠO & CẬP NHẬT TRONG DỰ ÁN
 
 | Tên File | Vị trí lưu trữ | Nội dung chính |
