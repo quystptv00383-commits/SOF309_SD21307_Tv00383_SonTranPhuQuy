@@ -220,6 +220,16 @@ ban push code va lam theo đúng những yêu cầu này của thầy tôi https
   5. Cấu hình workflow CI/CD GitHub Actions .github/workflows/test.yml tự động chạy mvn clean test.
   6. Thực thi kiểm thử tự động tại local: BUILD SUCCESS (100% test pass).
   7. Đồng bộ hóa và đẩy mã nguồn lên cả 2 nhánh main và master của kho GitHub chính thức: https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy.
+
+---
+
+### 🔹 Prompt 19: Giới hạn phạm vi nghiệm thu — Tập trung vào Y1 (Web chạy local)
+* **Thời gian:** 08/11/2026 23:28:17
+* **Nội dung câu lệnh:**
+`	ext
+toi chi cần làm Y1 mà thôi từ y2 đến y6 chua cần
+`
+* **Mục đích:** Xác nhận ưu tiên tối đa cho mục tiêu **Y1** (Khởi tạo repo chuẩn và đảm bảo toàn bộ web cá nhân chạy ổn định mượt mà trên localhost:8080). Các hạng mục Y2 đến Y6 đã được chuẩn bị sẵn khung tài liệu để phục vụ tiến độ các tuần kế tiếp.
 ## 📁 3. DANH SÁCH CÁC TÀI LIỆU ĐÃ TẠO & CẬP NHẬT TRONG DỰ ÁN
 
 | Tên File | Vị trí lưu trữ | Nội dung chính |
