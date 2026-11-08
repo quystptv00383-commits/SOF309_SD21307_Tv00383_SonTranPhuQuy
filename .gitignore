@@ -1,43 +1,39 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.kotlin
-
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
-
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
+# OS & Temp
 .DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+*.tmp
+*.log
+.dist/
 
-# Node / dependencies
+# IDE
+.idea/
+*.iml
+.vscode/
+*.sublime-project
+
+# Java / Maven / Gradle
+target/
+build/
+bin/
+*.class
+*.jar
+*.war
+
+# Private / Lecturer materials (Không đưa lên Git của SV)
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+Note.md
+HUONG_DAN_TRIEN_KHAI_ASSIGNMENT_GITHUB.md
+01-syllabus-guidelines/
+02-assignment-template/
+03-lecture-materials/
+05-ai-prompt-library/
+SOF304*
+
+# Node & Env
 node_modules/
 .env
