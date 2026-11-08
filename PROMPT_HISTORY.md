@@ -172,7 +172,7 @@ bạn tổng hợp tất cả các prompt của tôi và gửi cho tôi một fi
 
 ---
 
-### 🔹 Prompt 15 (Hiện tại): Đẩy toàn bộ mã nguồn & tài liệu lên kho lưu trữ GitHub
+### 🔹 Prompt 15: Đẩy toàn bộ mã nguồn & tài liệu lên kho lưu trữ GitHub
 * **Thời gian:** 08/11/2026 22:34:11
 * **Nội dung câu lệnh:**
 ```text
@@ -180,6 +180,26 @@ push bai làm của tôi lên github https://github.com/quystptv00383-commits/de
 ```
 * **Mục đích:** Đồng bộ hóa và đẩy toàn bộ source code, tài liệu kiểm thử, báo cáo sửa lỗi và nhật ký prompt lên kho GitHub `quystptv00383-commits/desktop-tutorial`.
 * **Kết quả:** Đã chuyển đổi remote sang kho mới, đồng bộ và đẩy thành công lên cả 2 nhánh `main` (nhánh mặc định của GitHub) và `master`.
+
+---
+
+### 🔹 Prompt 16: Cung cấp quy chuẩn đặt tên Repository GitHub theo yêu cầu nộp bài
+* **Thời gian:** 08/11/2026 22:44:08
+* **Nội dung câu lệnh:**
+```text
+SOF309_<SD21307>_<Tv00383>_<SơnTrầnPhúQuý>.
+```
+* **Mục đích:** Định dạng tên repository nộp bài theo chuẩn của giảng viên: `SOF309_<LỚP>_<MSSV>_<TÊN>`.
+
+---
+
+### 🔹 Prompt 17 (Hiện tại): Hướng dẫn đổi tên kho lưu trữ trên GitHub theo cấu trúc chuẩn
+* **Thời gian:** 08/11/2026 22:50:12
+* **Nội dung câu lệnh:**
+```text
+cách nào để đổi tên trên này và hãy đổi theo cấu trúc như này SOF309_<SD21307>_<Tv00383>_<SơnTrầnPhúQuý>.
+```
+* **Mục đích:** Hướng dẫn chi tiết từng bước đổi tên Repository trên giao diện GitHub từ `desktop-tutorial` sang tên chuẩn `SOF309_SD21307_Tv00383_SonTranPhuQuy` (loại bỏ dấu ngoặc nhọn `< >` không hợp lệ trên GitHub).
 
 ---
 

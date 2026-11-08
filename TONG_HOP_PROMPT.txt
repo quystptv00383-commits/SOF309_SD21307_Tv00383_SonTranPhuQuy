@@ -148,6 +148,33 @@ bạn tổng hợp tất cả các prompt của tôi và gửi cho tôi một fi
 - Mục đích:
 Yêu cầu AI tổng hợp toàn bộ tất cả các câu prompt của người dùng từ đầu buổi làm việc đến nay thành một file văn bản định dạng .txt.
 
+--------------------------------------------------------------------------------
+
+[PROMPT 16]
+- Thời gian: 08/11/2026 22:34:11
+- Nội dung câu lệnh:
+push bai làm của tôi lên github https://github.com/quystptv00383-commits/desktop-tutorial.git
+- Mục đích:
+Yêu cầu đẩy toàn bộ mã nguồn, các file cấu hình, báo cáo lỗi và tài liệu kiểm thử lên kho lưu trữ GitHub của người dùng.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 17] (Kèm ảnh chụp màn hình bảng yêu cầu nộp bài Tuần 1 của môn học SOF309)
+- Thời gian: 08/11/2026 22:44:08
+- Nội dung câu lệnh:
+SOF309_<SD21307>_<Tv00383>_<SơnTrầnPhúQuý>.
+- Mục đích:
+Cung cấp định dạng chuẩn đặt tên Repository GitHub theo yêu cầu nộp bài của Giảng viên: SOF309_<LỚP>_<MSSV>_<TÊN>.
+
+--------------------------------------------------------------------------------
+
+[PROMPT 18] (Kèm ảnh chụp màn hình trang GitHub desktop-tutorial)
+- Thời gian: 08/11/2026 22:50:12
+- Nội dung câu lệnh:
+cách nào để đổi tên trên này và hãy đổi theo cấu trúc như này SOF309_<SD21307>_<Tv00383>_<SơnTrầnPhúQuý>.
+- Mục đích:
+Hỏi cách đổi tên Repository trực tiếp trên giao diện web GitHub từ desktop-tutorial sang đúng định dạng chuẩn nộp bài của môn học.
+
 ================================================================================
                                HẾT TÀI LIỆU
 ================================================================================
