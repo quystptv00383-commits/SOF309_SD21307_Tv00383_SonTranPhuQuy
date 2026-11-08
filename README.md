@@ -1,8 +1,32 @@
-﻿# SOF309: KIỂM THỬ NÂNG CAO CÙNG AI
+﻿# 🍵 SOF309: KIỂM THỬ NÂNG CAO CÙNG AI
 > **Master Template Assignment dành cho Sinh viên FPT Polytechnic**  
-> Giảng viên hướng dẫn: **ThS. Trần Quang Bình**  
-> Sinh viên thực hiện: **Sơn Trần Phú Quý** | MSSV: **Tv00383** | Lớp: **SD21307**  
+> Giảng viên hướng dẫn: **ThS. Trần Quang Bình (binhtq7 - Thầy Mười Giáo)**  
 > 📖 [Xem Cẩm nang hướng dẫn chi tiết từng tuần (Tuần 1 đến Tuần 6)](./docs/HUONG_DAN_CHI_TIET_6_TUAN.md)
+
+---
+
+### 🏆 THÔNG TIN SINH VIÊN & HỌC PHẦN
+
+| Thuộc tính | Chi tiết thông tin |
+|:---|:---|
+| 🏫 **Cơ sở đào tạo** | **FPT Polytechnic** |
+| 📚 **Môn học** | **SOF309** — Kiểm Thử Nâng Cao Cùng AI |
+| 👨‍🏫 **Giảng viên hướng dẫn** | **ThS. Trần Quang Bình** |
+| 👨‍🎓 **Sinh viên thực hiện** | **Sơn Trần Phú Quý** |
+| 🆔 **Mã số sinh viên (MSSV)** | **Tv00383** |
+| 🏷️ **Lớp chuyên ngành** | **SD21307** |
+| 🍵 **Tên dự án Web** | **TEA POS Enterprise & Portal O2O Click & Collect System** |
+| 🌐 **URL chạy local (Y1)** | `http://localhost:8080/TEA_POS_PROJECT_war/home` (Tomcat 11 — ✅ **200 OK**) |
+| 🔗 **Link GitHub Repo** | [https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy](https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy) |
+
+---
+
+### ⚡ ĐIỀU HƯỚNG NHANH TÀI LIỆU (QUICK NAVIGATION)
+* 📋 [Đặc tả nghiệp vụ hệ thống (docs/SPECIFICATIONS.md)](./docs/SPECIFICATIONS.md)
+* 📊 [Kế hoạch kiểm thử tổng thể (docs/TEST_PLAN.md)](./docs/TEST_PLAN.md)
+* 🧪 [Ma trận 80 Kịch bản kiểm thử (docs/TEST_CASES.md)](./docs/TEST_CASES.md)
+* 🤖 [Minh chứng tương tác AI RAG (docs/ai-logs/01_test_design_ai.md)](./docs/ai-logs/01_test_design_ai.md)
+* 📖 [Cẩm nang hướng dẫn 6 tuần (docs/HUONG_DAN_CHI_TIET_6_TUAN.md)](./docs/HUONG_DAN_CHI_TIET_6_TUAN.md)
 
 ---
 
@@ -38,7 +62,7 @@ flowchart LR
 ### 🔹 Bước 1: Khởi tạo Repo cá nhân từ Template
 1. Tại **góc trên bên phải màn hình** trang này, nhấn nút xanh **Use this template** $\rightarrow$ chọn **Create a new repository**.
 2. Điền thông tin biểu mẫu theo quy chuẩn:
-   * **Repository name:** `SOF309_<MÃ_LỚP>_<MSSV>_<HọVàTên>` *(Ví dụ: `SOF309_SD21307_PD12345_NguyenVanA`)*
+   * **Repository name:** `SOF309_<MÃ_LỚP>_<MSSV>_<HọVàTên>` *(Ví dụ: `SOF309_SD21307_Tv00383_SonTranPhuQuy`)*
    * **Visibility:** Chọn **Public** (Bắt buộc để Giảng viên truy cập chấm bài).
 3. Nhấn nút xanh **Create repository** ở đáy biểu mẫu.
 
@@ -58,7 +82,7 @@ flowchart LR
 
 2. Mở Terminal / Git Bash trên máy tính, di chuyển đến thư mục học tập và gõ lệnh:
 ```bash
-git clone https://github.com/<tai-khoan-cua-ban>/SOF309_<MÃ_LỚP>_<MSSV>_<HoTen>.git
+git clone https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy.git
 ```
 > 💡 **Repo mẫu thực tế của Thầy để tham khảo:** [https://github.com/tqbinh1268/SOF309_SD21301_PS12345_TranQuangBinh.git](https://github.com/tqbinh1268/SOF309_SD21301_PS12345_TranQuangBinh.git)
 
@@ -94,9 +118,8 @@ git push origin main
 ## 📁 PHẦN IV. CẤU TRÚC THƯ MỤC QUY CHUẨN CỦA DỰ ÁN
 
 ```text
-SOF309_<MÃ_LỚP>_<MSSV>_<HoTen>/
+SOF309_SD21307_Tv00383_SonTranPhuQuy/
 ├── pom.xml                               # Đã tích hợp sẵn JUnit 5 & Selenium 4
-├── testng.xml                            # File điều phối chạy Suite, Groups & Listeners
 ├── .github/
 │   └── workflows/
 │       └── test.yml                     # [Y5] Tự động chạy test khi push code
@@ -104,13 +127,15 @@ SOF309_<MÃ_LỚP>_<MSSV>_<HoTen>/
 │   ├── HUONG_DAN_CHI_TIET_6_TUAN.md     # Cẩm nang hướng dẫn chi tiết từng tuần
 │   ├── SPECIFICATIONS.md                # [Y1] Đặc tả nghiệp vụ Web cá nhân
 │   ├── TEST_PLAN.md                     # [Y2] Kế hoạch kiểm thử
-│   ├── TEST_CASES.md                    # [Y2] Bộ kịch bản Test Case chi tiết
+│   ├── TEST_CASES.md                    # [Y2] Bộ kịch bản Test Case chi tiết (80 TCs)
 │   └── ai-logs/                         # [Y6] Minh chứng tương tác AI (Điểm A)
+│       ├── 01_test_design_ai.md         # Minh chứng AI RAG sinh Test Plan/Case
 │       └── README.md
 ├── src/
-│   ├── main/                            # [Y1] Mã nguồn Web cá nhân của sinh viên
-│   │   ├── java/
-│   │   └── resources/
+│   ├── main/                            # [Y1] Mã nguồn Web Tea POS của sinh viên
+│   │   ├── java/                        # 114 class Java (Controller, Filter, DAO, Model, Config)
+│   │   ├── resources/                   # application.properties (SQL Server Connection)
+│   │   └── webapp/                      # Toàn bộ JSP, CSS, JS, Dashboard, POS
 │   └── test/java/com/poly/sof309/
 │       ├── controllers/                 # [Y3] Unit Test cho Controller (Parameterized, Exception)
 │       │   └── SampleControllerTest.java
@@ -119,7 +144,6 @@ SOF309_<MÃ_LỚP>_<MSSV>_<HoTen>/
 │           │   └── LoginPage.java
 │           └── tests/                   # Kịch bản test chạy trên trình duyệt (Data-Driven, Groups)
 │               └── LoginTest.java
-├── screenshots/                         # [Y4 & Y5] Thư mục tự động lưu ảnh chụp khi test fail
 ├── .gitignore
 └── README.md
 ```
@@ -134,3 +158,23 @@ SOF309_<MÃ_LỚP>_<MSSV>_<HoTen>/
 | **B (7.0 - 7.9)** | **Y1 đến Y5** | • Web chạy tốt, có kịch bản test, JUnit, Selenium và CI/CD Actions chạy pass (thiếu hoặc chưa hoàn chỉnh minh chứng AI Y6). |
 | **C (5.0 - 6.9)** | **Y1 đến Y3** | • Web chạy được, có Test Plan/Test Case và chạy được Unit test JUnit (chưa làm Selenium UI và CI/CD). |
 | **D (< 5.0)** | **Dưới 3 yêu cầu** | • Không hoàn thành đủ các yêu cầu cơ bản $\rightarrow$ **Học lại**. |
+
+---
+
+## 🛠️ PHẦN VI. HƯỚNG DẪN KHỞI CHẠY WEB LOCAL (Y1)
+
+### 1. Cấu hình CSDL trong `src/main/resources/application.properties`
+```properties
+db.url=jdbc:sqlserver://localhost:1433;databaseName=QuanLyQuanCafehetcuu;encrypt=true;trustServerCertificate=true
+db.user=HAKAI
+db.password=14112009
+```
+
+### 2. Triển khai ứng dụng trên IntelliJ IDEA
+1. Mở dự án trong IntelliJ IDEA $\rightarrow$ chọn Run configuration: **Tomcat 11.0.211**.
+2. Nhấn nút **Run** (phím tắt `Shift + F10`).
+3. Truy cập trình duyệt kiểm tra:
+   * **Cổng khách hàng:** `http://localhost:8080/TEA_POS_PROJECT_war/home`
+   * **Đăng nhập quản trị & POS:** `http://localhost:8080/TEA_POS_PROJECT_war/login`
+     * *Quản trị viên (Admin):* `admin` / `12345678`
+     * *Thu ngân (Staff):* `staff` / `12345678`
