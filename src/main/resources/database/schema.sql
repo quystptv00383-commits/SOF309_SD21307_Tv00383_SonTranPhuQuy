@@ -1,4 +1,4 @@
--- =========================================================================
+﻿-- =========================================================================
 -- HỆ THỐNG QUẢN LÝ VÀ BÁN HÀNG TRÀ SỮA TEA POS ENTERPRISE SYSTEM
 -- BẢN THIẾT KẾ CƠ SỞ DỮ LIỆU ĐẦY ĐỦ VÀ HOÀN CHỈNH NHẤT - CHUẨN ĐỒ ÁN TỐT NGHIỆP
 -- Đội ngũ CodeDevSquad 2026 - Tối ưu hóa hiệu năng, bảo mật và tính toàn vẹn
@@ -8,13 +8,13 @@ USE master;
 GO
 
 -- 1. Khởi tạo Database tươi mới an toàn
-IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'QuanLyQuanCafehetcuu1')
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'QuanLyQuanCafehetcuu')
 BEGIN
-    CREATE DATABASE QuanLyQuanCafehetcuu1;
+    CREATE DATABASE QuanLyQuanCafehetcuu;
 END;
 GO
 
-USE QuanLyQuanCafehetcuu1;
+USE QuanLyQuanCafehetcuu;
 GO
 
 -- =========================================================================
