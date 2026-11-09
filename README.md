@@ -1,4 +1,4 @@
-﻿# 🍵 SOF309: KIỂM THỬ NÂNG CAO CÙNG AI
+# 🍵 SOF309: KIỂM THỬ NÂNG CAO CÙNG AI
 > **Master Template Assignment dành cho Sinh viên FPT Polytechnic**  
 > Giảng viên hướng dẫn: **ThS. Trần Quang Bình (binhtq7 - Thầy Mười Giáo)**  
 > 📖 [Xem Cẩm nang hướng dẫn chi tiết từng tuần (Tuần 1 đến Tuần 6)](./docs/HUONG_DAN_CHI_TIET_6_TUAN.md)
@@ -18,6 +18,16 @@
 | 🍵 **Tên dự án Web** | **TEA POS Enterprise & Portal O2O Click & Collect System** |
 | 🌐 **URL chạy local (Y1)** | `http://localhost:8080/TEA_POS_PROJECT_war/home` (Tomcat 11 — ✅ **200 OK**) |
 | 🔗 **Link GitHub Repo** | [https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy](https://github.com/quystptv00383-commits/SOF309_SD21307_Tv00383_SonTranPhuQuy) |
+
+---
+
+### 🎓 TIẾN ĐỘ HỌC TẬP LEARNING PATH (POLY - FA2026)
+> 📚 **Khóa học:** Poly - SOF309 - Kiểm thử nâng cao cùng AI (Java) - FA2026  
+> ⏱️ **Thời lượng:** 10 giờ 3 phút | **Biên tập viên:** Tạ Thị Hồng Trâm  
+> 📊 **Tiến độ học tập:** **33.33% hoàn thành** (Đã hoàn thành các học phần nền tảng)
+
+![Tiến độ học tập Learning Path SOF309](learning-path.png)
+*Minh chứng hoàn thành tiến độ học tập môn SOF309 - Kiểm thử nâng cao cùng AI trên nền tảng đào tạo trực tuyến.*
 
 ---
 
