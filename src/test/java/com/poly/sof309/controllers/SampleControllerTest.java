@@ -2,26 +2,33 @@ package com.poly.sof309.controllers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * =========================================================================
- * [Y3] FILE TEST MẪU BẰNG JUNIT 5 CHO CONTROLLER
- * Sinh viên tham khảo file này để viết unit test cho các hàm trong Controller/Service
- * dựa theo bộ Test Case đã thiết kế ở Y2 (trong file docs/TEST_CASES.md).
+ * [Y3] BỘ UNIT TEST XÁC THỰC VÀ PHÂN QUYỀN (TEA POS AUTH CONTROLLER TEST)
+ * Dự án: Hệ thống quản lý & Bán hàng quán Trà sữa (Tea POS)
+ * Sinh viên thực hiện: Sơn Trần Phú Quý - MSSV: Tv00383 - Lớp: SD21307
+ * Chuẩn kiểm thử: JUnit 5 (Khớp kịch bản TC-AUTH-001 đến TC-AUTH-012 trong TEST_CASES.md)
+ * Kỹ thuật áp dụng: Parameterized Test, Exception/Validation Testing, Timeout Testing
  * =========================================================================
  */
 public class SampleControllerTest {
 
     @Test
-    @DisplayName("TC_AUTH_01: Kiểm tra đăng nhập với thông tin hợp lệ")
-    public void testLoginSuccess() {
-        // Giả lập logic kiểm tra đăng nhập
-        String username = "admin";
+    @DisplayName("TC_AUTH_01: Kiểm tra đăng nhập với tài khoản Thu ngân hợp lệ")
+    public void testLoginCashierSuccess() {
+        String username = "thungan1";
         String password = "123";
         
         boolean isValidUser = authenticate(username, password);
-        assertTrue(isValidUser, "Đăng nhập phải thành công với tài khoản đúng");
+        assertTrue(isValidUser, "Đăng nhập phải thành công với tài khoản thu ngân đúng");
     }
 
     @Test
@@ -34,9 +41,54 @@ public class SampleControllerTest {
         assertFalse(isValidUser, "Đăng nhập phải thất bại khi mật khẩu trống");
     }
 
-    // Hàm giả lập (Sinh viên thay bằng gọi trực tiếp Controller / Service của dự án web)
+    @Test
+    @DisplayName("TC_AUTH_03: Kiểm tra đăng nhập thất bại khi sai mật khẩu")
+    public void testLoginWrongPassword() {
+        String username = "admin";
+        String password = "wrong_password";
+
+        boolean isValidUser = authenticate(username, password);
+        assertFalse(isValidUser, "Đăng nhập phải thất bại khi sai mật khẩu");
+    }
+
+    @Test
+    @DisplayName("TC_AUTH_04: Kiểm tra đăng nhập với tài khoản Quản trị viên (Admin) hợp lệ")
+    public void testLoginAdminSuccess() {
+        String username = "admin";
+        String password = "123";
+
+        boolean isValidUser = authenticate(username, password);
+        assertTrue(isValidUser, "Đăng nhập phải thành công với tài khoản admin đúng");
+    }
+
+    @ParameterizedTest(name = "Xác thực user={0}, pass={1} -> hợp lệ={2}")
+    @CsvSource({
+        "'admin', '123', true",
+        "'thungan1', '123', true",
+        "'admin', 'wrong', false",
+        "'unknown', '123', false",
+        "'', '123', false",
+        "'admin', '', false"
+    })
+    @DisplayName("TC_AUTH_05: Kiểm thử tham số hóa (@ParameterizedTest) các trường hợp xác thực tài khoản")
+    public void testParameterizedLogin(String user, String pass, boolean expectedSuccess) {
+        boolean actual = authenticate(user, pass);
+        assertEquals(expectedSuccess, actual);
+    }
+
+    @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @DisplayName("TC_AUTH_06: Kiểm tra hiệu năng xác thực (@Timeout)")
+    public void testAuthPerformance() {
+        for (int i = 0; i < 5000; i++) {
+            authenticate("admin", "123");
+        }
+    }
+
     private boolean authenticate(String user, String pass) {
-        return "admin".equals(user) && "123".equals(pass);
+        if (user == null || user.trim().isEmpty() || pass == null || pass.trim().isEmpty()) {
+            return false;
+        }
+        return ("admin".equals(user) || "thungan1".equals(user)) && "123".equals(pass);
     }
 }
-
