@@ -29,7 +29,7 @@ public class ProductTestNGTest {
         return driver;
     }
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         if (Boolean.parseBoolean(System.getenv("CI")) || Boolean.getBoolean("headless")) {
@@ -39,34 +39,30 @@ public class ProductTestNGTest {
             options.addArguments("--window-size=1920,1080");
         }
 
-        try {
-            driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-            driver.manage().window().maximize();
-            loginPage = new LoginPage(driver);
-            productPage = new ProductPage(driver);
-            
-            // Đăng nhập trước bằng tài khoản quản trị để có session truy cập trang admin
-            driver.get(BASE_URL);
-            loginPage.login("admin", "123456");
-        } catch (Exception e) {
-            System.out.println("[ProductTestNGTest] Khởi tạo ChromeDriver: " + e.getMessage());
-        }
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().window().maximize();
+        loginPage = new LoginPage(driver);
+        productPage = new ProductPage(driver);
+        
+        driver.get(BASE_URL);
+        loginPage.login("admin", "123456");
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            try {
+                driver.quit();
+            } catch (Exception ignored) {
+            } finally {
+                driver = null;
+            }
         }
     }
 
-    // =========================================================================
-    // 1. SMOKE TESTS: Hiển thị danh sách thực đơn & Tìm kiếm
-    // =========================================================================
     @Test(groups = {"smoke"}, priority = 1, description = "Kiểm tra tải trang quản lý món nước Tea POS")
     public void testViewProductMenu() {
-        if (driver == null) return;
         driver.get(PRODUCT_URL);
         Assert.assertTrue(driver.getCurrentUrl().contains("/sanpham") || driver.getCurrentUrl().contains("/login") || productPage.isPageLoaded(),
                 "Trang quản lý món nước phải phản hồi hợp lệ");
@@ -74,7 +70,6 @@ public class ProductTestNGTest {
 
     @Test(groups = {"smoke"}, priority = 2, description = "Kiểm tra tìm kiếm món nước theo từ khóa 'Trà sữa'")
     public void testSearchProductByKeyword() {
-        if (driver == null) return;
         driver.get(PRODUCT_URL);
         if (productPage.isPageLoaded()) {
             productPage.searchProduct("Trà sữa");
@@ -83,13 +78,8 @@ public class ProductTestNGTest {
         }
     }
 
-    // =========================================================================
-    // 2. REGRESSION TESTS VỚI DEPENDSONMETHODS (Lab 5):
-    // Luồng xóa món nước phụ thuộc vào luồng thêm mới thành công
-    // =========================================================================
     @Test(groups = {"regression"}, priority = 3, description = "Thao tác thêm món nước mới trên form giao diện")
     public void testAddProductSuccess() {
-        if (driver == null) return;
         driver.get(PRODUCT_URL);
         if (productPage.isPageLoaded()) {
             int initialCount = productPage.getProductRowCount();
@@ -102,7 +92,6 @@ public class ProductTestNGTest {
     @Test(groups = {"regression"}, priority = 4, dependsOnMethods = {"testAddProductSuccess"},
           description = "Xóa món nước (chỉ chạy khi testAddProductSuccess thành công - dependsOnMethods)")
     public void testDeleteProductSuccess() {
-        if (driver == null) return;
         driver.get(PRODUCT_URL);
         if (productPage.isPageLoaded() && productPage.getProductRowCount() > 0) {
             productPage.deleteFirstProduct();

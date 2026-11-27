@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
  */
 public class ProductPage extends BasePage {
 
-    // Locator trang quản lý sản phẩm Tea POS (/admin/sanpham)
     private final By pageTitle = By.xpath("//h3[contains(text(),'Quản Lý Sản Phẩm')]");
     private final By btnAddProduct = By.xpath("//a[contains(@href, 'action=create')]");
     private final By txtSearch = By.name("keyword");
@@ -20,7 +19,6 @@ public class ProductPage extends BasePage {
     private final By firstProductName = By.xpath("//table//tbody/tr[1]//td[contains(@class,'product-name') or 2]");
     private final By btnFirstDelete = By.xpath("//table//tbody/tr[1]//a[contains(@href, 'action=delete') or contains(@class,'btn-delete')]");
 
-    // Form thêm sản phẩm
     private final By txtProductName = By.name("ten_sp");
     private final By txtProductPrice = By.name("gia_ban");
     private final By btnSave = By.xpath("//button[@type='submit']");
@@ -30,6 +28,10 @@ public class ProductPage extends BasePage {
     }
 
     public boolean isPageLoaded() {
+        String currentUrl = driver.getCurrentUrl();
+        if (currentUrl == null || !currentUrl.contains("/sanpham")) {
+            return false;
+        }
         return isElementDisplayed(pageTitle) || isElementDisplayed(tableProducts);
     }
 
