@@ -5,36 +5,36 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * =========================================================================
- * [Y4] MẪU PAGE OBJECT MODEL (POM) CHO TRANG ĐĂNG NHẬP
- * Class này chỉ quản lý các phần tử (Locator) và hành động trên trang Web.
+ * [Y4] PAGE OBJECT MODEL (POM) CHO TRANG ĐĂNG NHẬP TEA POS
+ * Kế thừa BasePage để quản lý Locator và hành động với WebDriverWait chuẩn.
+ * Sinh viên: Sơn Trần Phú Quý - MSSV: Tv00383 - Lớp: SD21307
  * =========================================================================
  */
-public class LoginPage {
-    private WebDriver driver;
+public class LoginPage extends BasePage {
 
-    // 1. Định nghĩa các Locator trên trang đăng nhập của web cá nhân
-    private By txtUsername = By.id("username");
-    private By txtPassword = By.id("password");
-    private By btnLogin = By.xpath("//button[@type='submit']");
-    private By lblErrorMessage = By.id("error-message");
+    // 1. Locator trang đăng nhập nhân viên/admin Tea POS
+    private final By txtUsername = By.name("username");
+    private final By txtPassword = By.name("password");
+    private final By btnLogin = By.xpath("//button[@type='submit']");
+    private final By alertError = By.cssSelector(".alert-danger, .swal2-error, .text-danger");
+    private final By alertSuccess = By.cssSelector(".alert-success, .swal2-success");
+    private final By brandTitle = By.xpath("//h4[contains(text(),'TEA POS')]");
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    // 2. Các hành động nghiệp vụ
+    // 2. Hành động nghiệp vụ
     public void enterUsername(String username) {
-        driver.findElement(txtUsername).clear();
-        driver.findElement(txtUsername).sendKeys(username);
+        type(txtUsername, username);
     }
 
     public void enterPassword(String password) {
-        driver.findElement(txtPassword).clear();
-        driver.findElement(txtPassword).sendKeys(password);
+        type(txtPassword, password);
     }
 
     public void clickLogin() {
-        driver.findElement(btnLogin).click();
+        click(btnLogin);
     }
 
     public void login(String username, String password) {
@@ -43,8 +43,23 @@ public class LoginPage {
         clickLogin();
     }
 
+    public boolean isBrandTitleDisplayed() {
+        return isElementDisplayed(brandTitle);
+    }
+
+    public boolean isLoginButtonEnabled() {
+        try {
+            return driver.findElement(btnLogin).isEnabled();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public String getErrorMessage() {
-        return driver.findElement(lblErrorMessage).getText();
+        try {
+            return getText(alertError);
+        } catch (Exception e) {
+            return "";
+        }
     }
 }
-

@@ -118,6 +118,16 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- ============================================== -->
+        <!-- [Y4 - P2] TESTNG TESTING FRAMEWORK            -->
+        <!-- ============================================== -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.9.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

@@ -37,6 +37,7 @@
 * 🧪 [Ma trận 80 Kịch bản kiểm thử (docs/TEST_CASES.md)](./docs/TEST_CASES.md)
 * 🤖 [Minh chứng AI RAG sinh Test Plan & Case - Y2 (docs/ai-logs/01_test_design_ai.md)](./docs/ai-logs/01_test_design_ai.md)
 * ⚡ [Minh chứng AI sinh JUnit 5 Unit Test - Y3 (docs/ai-logs/02_junit_script_ai.md)](./docs/ai-logs/02_junit_script_ai.md)
+* 🎭 [Minh chứng AI TestNG POM & Data-Driven - Y4 (docs/ai-logs/03_selenium_pom_ai.md)](./docs/ai-logs/03_selenium_pom_ai.md)
 * 📖 [Cẩm nang hướng dẫn 6 tuần (docs/HUONG_DAN_CHI_TIET_6_TUAN.md)](./docs/HUONG_DAN_CHI_TIET_6_TUAN.md)
 
 ---
@@ -52,6 +53,22 @@
 | 2 | `VoucherControllerTest` | Quản lý Voucher & Khuyến mãi (Giảm tiền 15k, giảm 20% max 30k, chặn trần, đơn tối thiểu) | `@Test`, `@DisplayName`, `@BeforeEach`, `@ParameterizedTest`, `@CsvSource`, `assertThrows`, `@Timeout` | **10** | **10/10 PASS** ✅ |
 | 3 | `SampleControllerTest` | Xác thực & Phân quyền (Đăng nhập Admin/Thu ngân, kiểm tra mật khẩu rỗng/sai) | `@Test`, `@DisplayName`, `@ParameterizedTest`, `@CsvSource`, `@Timeout` | **11** | **11/11 PASS** ✅ |
 | **Σ** | **Toàn bộ Unit Test Suite (Y3)** | **3 Phân hệ trọng tâm Tea POS** | **JUnit 5 Advanced Automation** | **34 Tests** | **100% PASS** 🏆 |
+
+---
+
+### 🎭 KẾT QUẢ NGHIỆM THU TESTNG AUTOMATION FRAMEWORK (Y4 — HOÀN THÀNH)
+> 🚀 **Framework:** Selenium WebDriver 4.20 + TestNG 7.9.0 + Page Object Model (POM)  
+> 📁 **Quản lý Suite:** File [testng.xml](./testng.xml) tại thư mục gốc dự án  
+> 📸 **Chụp ảnh tự động khi lỗi:** [TestListener.java](./src/test/java/com/poly/sof309/ui/listeners/TestListener.java) tự động lưu ảnh vào thư mục `screenshots/`
+
+| STT | Thành phần Framework | File nguồn / Class | Kỹ thuật TestNG & POM áp dụng | Vai trò & Mục tiêu |
+|:---:|:---|:---|:---|:---|
+| 1 | **Base Page Object** | `BasePage.java` | `WebDriverWait` (10s), xử lý bất đồng bộ DOM | Loại bỏ hoàn toàn `Thread.sleep()`, quản lý click/type an toàn |
+| 2 | **Login Page Object** | `LoginPage.java` | Kế thừa BasePage, quản lý Locator form đăng nhập | Tương tác form đăng nhập Admin/Thu ngân Tea POS |
+| 3 | **Product Page Object** | `ProductPage.java` | Kế thừa BasePage, quản lý Locator thực đơn đồ uống | Tìm kiếm, thêm món mới và xóa món nước |
+| 4 | **TestNG Listener** | `TestListener.java` | `ITestListener`, `TakesScreenshot`, chụp ảnh lỗi | Bắt sự kiện fail lưu ảnh vào `screenshots/{testName}_{time}.png` |
+| 5 | **Login Test Suite** | `LoginTestNGTest.java` | `@DataProvider(name = "loginAccounts")`, Groups `smoke`, `regression` | Data-Driven Testing đăng nhập hàng loạt bộ tài khoản |
+| 6 | **Product Test Suite** | `ProductTestNGTest.java` | Groups `smoke`, `regression`, `dependsOnMethods` | Luồng xóa món chỉ chạy khi thêm món thành công |
 
 ---
 
@@ -74,8 +91,8 @@ flowchart LR
 | :---: | :--- | :--- | :--- |
 | **Tuần 1**<br>*(02/11 - 08/11)*<br>**Gặp Buổi 1** | • Khởi tạo Repo từ Template của Thầy.<br>• Đưa Web cá nhân vào `src/main/` và chạy mượt local (**Xong Y1**).<br>• Điền đặc tả `SPECIFICATIONS.md`, nạp AI RAG sinh **Test Plan** & **Test Case** (**Xong Y2**). | • Repo chuẩn tên `SOF309_<LỚP>_<MSSV>_<TÊN>`.<br>• Web chạy được local (`localhost:8080`).<br>• File `TEST_PLAN.md` & `TEST_CASES.md`.<br>✅ **ĐÃ HOÀN THÀNH (Y1 & Y2)** | **Chủ Nhật (08/11)**<br>Nộp link Repo cá nhân. |
 | **Tuần 2**<br>*(09/11 - 15/11)*<br>**Gặp Buổi 2** | • Viết Unit Test cho Controller trong `controllers/` (**Xong Y3**).<br>• **`@ParameterizedTest`** + `@CsvSource` kiểm tra biên Form.<br>• **`assertThrows()`** kiểm thử ngoại lệ bắt lỗi nghiệp vụ. | • Thư mục `src/test/java/.../controllers/`.<br>• Lệnh `mvn test` đạt 100% Pass (34/34 Tests).<br>• File `docs/ai-logs/02_junit_script_ai.md`.<br>✅ **ĐÃ HOÀN THÀNH (Y3)** | **Chủ Nhật (15/11)**<br>Nộp link commit Unit Test. |
-| **Tuần 3**<br>*(16/11 - 22/11)*<br>**Gặp Buổi 3** | • Thiết kế khung **Selenium Page Object Model (POM)** (**Y4 - P1**).<br>• Xây dựng các Page Classes (`LoginPage`, `RegisterPage`, `CrudPage`).<br>• Sử dụng `WebDriverWait` xử lý bất đồng bộ, tương tác DOM. | • Thư mục `src/test/java/.../ui/pages/`.<br>• Kịch bản Selenium mở Chrome chạy mượt mà ở local. | **Chủ Nhật (22/11)**<br>Nộp link commit Selenium POM. |
-| **Tuần 4**<br>*(23/11 - 29/11)*<br>**Gặp Buổi 4** | • Nâng cấp **TestNG Framework** chuyên nghiệp (**Y4 - P2**).<br>• Gắn nhãn **`groups = "smoke"`** và ràng buộc `dependsOnMethods`.<br>• **`@DataProvider`** tự động test lặp nhiều tài khoản.<br>• **`ITestListener`** tự động chụp ảnh màn hình khi test fail. | • File cấu hình `testng.xml`.<br>• Thư mục `screenshots/` chứa ảnh lỗi.<br>• File `docs/ai-logs/03_selenium_pom_ai.md`. | **Chủ Nhật (29/11)**<br>Nộp link commit TestNG & Data-Driven. |
+| **Tuần 3**<br>*(16/11 - 22/11)*<br>**Gặp Buổi 3** | • Thiết kế khung **Selenium Page Object Model (POM)** (**Y4 - P1**).<br>• Xây dựng các Page Classes (`LoginPage`, `RegisterPage`, `ProductPage`).<br>• Sử dụng `WebDriverWait` xử lý bất đồng bộ, tương tác DOM. | • Thư mục `src/test/java/.../ui/pages/`.<br>• Kịch bản Selenium mở Chrome chạy mượt mà ở local.<br>✅ **ĐÃ HOÀN THÀNH (Y4 - P1)** | **Chủ Nhật (22/11)**<br>Nộp link commit Selenium POM. |
+| **Tuần 4**<br>*(23/11 - 29/11)*<br>**Gặp Buổi 4** | • Nâng cấp **TestNG Framework** chuyên nghiệp (**Y4 - P2**).<br>• Gắn nhãn **`groups = "smoke"`** và ràng buộc `dependsOnMethods`.<br>• **`@DataProvider`** tự động test lặp nhiều tài khoản.<br>• **`ITestListener`** tự động chụp ảnh màn hình khi test fail. | • File cấu hình `testng.xml`.<br>• Thư mục `screenshots/` chứa ảnh lỗi.<br>• File `docs/ai-logs/03_selenium_pom_ai.md`.<br>✅ **ĐÃ HOÀN THÀNH (Y4 - P2)** | **Chủ Nhật (29/11)**<br>Nộp link commit TestNG & Data-Driven. |
 | **Tuần 5**<br>*(30/11 - 06/12)*<br>**Gặp Buổi 5** | • Cấu hình CI/CD với **GitHub Actions** (`.github/workflows/test.yml`) (**Xong Y5**).<br>• Chạy test chế độ Chrome Headless trên Ubuntu.<br>• Upload báo cáo kiểm thử & ảnh chụp lỗi lên tab **Artifacts**.<br>• Đưa stack trace lỗi cho AI phân tích debug (Y6). | • Tab **Actions** trên GitHub sáng đèn **Xanh (Pass)**.<br>• Tải được file zip báo cáo trong Artifacts.<br>• File `docs/ai-logs/04_debug_logs_ai.md`. | **Chủ Nhật (06/12)**<br>Nộp link tab GitHub Actions báo Xanh. |
 | **Tuần 6**<br>*(07/12)*<br>**Gặp Buổi 6 (Tổng kết)** | • Nhờ AI code review và tối ưu mã nguồn test (Y6).<br>• Rà soát đủ các file trong thư mục `docs/ai-logs/` để **đạt điểm A**.<br>• Chuẩn bị Slide thuyết trình bảo vệ (PowerPoint/PDF). | • Đầy đủ 6 file trong `docs/ai-logs/`.<br>• File nén `.zip` nộp bài lưu trữ.<br>• Slide thuyết trình sẵn sàng bảo vệ. | **Thứ 4 (09/12)**<br>Nộp file zip và Slide bảo vệ. |
 | **Tuần 7**<br>*(11/12, 14/12, 16/12)* | **BẢO VỆ ASSIGNMENT CHÍNH THỨC TRƯỚC GIẢNG VIÊN** | • Thuyết trình Slide (3 phút).<br>• Demo test chạy tự động (3 phút).<br>• Vấn đáp trực tiếp với Giảng viên. | **Bảo vệ tại lớp** |
