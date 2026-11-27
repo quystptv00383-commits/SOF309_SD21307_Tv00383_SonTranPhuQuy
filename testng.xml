@@ -22,7 +22,7 @@
     </test>
 
     <!-- TEST SUITE 2: REGRESSION & DATA-DRIVEN TESTING (CÁC LUỒNG NÂNG CAO) -->
-    <test name="Regression Tests - Data Driven & Boundary">
+    <test name="Regression Tests - Data Driven and Boundary">
         <groups>
             <run>
                 <include name="regression"/>
