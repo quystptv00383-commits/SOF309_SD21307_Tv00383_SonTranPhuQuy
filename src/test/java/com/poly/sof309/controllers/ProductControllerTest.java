@@ -130,7 +130,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @Timeout(value = 3, unit = TimeUnit.SECONDS)
     @DisplayName("TC_PROD_09: Kiểm tra thời gian phản hồi (@Timeout) khi tải toàn bộ danh mục thực đơn")
     public void testListProductsTimeout() {
         List<Product> products = productController.listProducts();

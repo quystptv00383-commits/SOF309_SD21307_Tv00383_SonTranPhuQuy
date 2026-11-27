@@ -6,22 +6,23 @@ import org.openqa.selenium.WebDriver;
 /**
  * =========================================================================
  * [Y4] PAGE OBJECT MODEL (POM) CHO TRANG QUẢN LÝ SẢN PHẨM / THỰC ĐƠN TEA POS
+ * Khớp 100% với các phần tử trên san_pham.jsp và sanpham-form.jsp
  * Sinh viên: Sơn Trần Phú Quý - MSSV: Tv00383 - Lớp: SD21307
  * =========================================================================
  */
 public class ProductPage extends BasePage {
 
+    // Locator trên san_pham.jsp
     private final By pageTitle = By.xpath("//h3[contains(text(),'Quản Lý Sản Phẩm')]");
     private final By btnAddProduct = By.xpath("//a[contains(@href, 'action=create')]");
-    private final By txtSearch = By.name("keyword");
-    private final By btnSearch = By.xpath("//button[contains(@class,'btn-search') or @type='submit']");
+    private final By txtSearch = By.id("productSearchInput");
     private final By tableProducts = By.xpath("//table");
-    private final By firstProductName = By.xpath("//table//tbody/tr[1]//td[contains(@class,'product-name') or 2]");
-    private final By btnFirstDelete = By.xpath("//table//tbody/tr[1]//a[contains(@href, 'action=delete') or contains(@class,'btn-delete')]");
+    private final By btnFirstDelete = By.cssSelector(".btn-action-delete");
+    private final By btnSwalConfirm = By.cssSelector(".swal2-confirm");
 
-    private final By txtProductName = By.name("ten_sp");
-    private final By txtProductPrice = By.name("gia_ban");
-    private final By btnSave = By.xpath("//button[@type='submit']");
+    // Locator trên sanpham-form.jsp
+    private final By txtProductName = By.id("tenSp");
+    private final By btnSave = By.xpath("//form[@id='productForm']//button[@type='submit'] | //button[@type='submit']");
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -32,22 +33,24 @@ public class ProductPage extends BasePage {
         if (currentUrl == null || !currentUrl.contains("/sanpham")) {
             return false;
         }
-        return isElementDisplayed(pageTitle) || isElementDisplayed(tableProducts);
+        return isElementDisplayed(pageTitle) && isElementDisplayed(tableProducts);
     }
 
     public void searchProduct(String keyword) {
         type(txtSearch, keyword);
-        click(btnSearch);
     }
 
     public void clickAddNew() {
         click(btnAddProduct);
     }
 
-    public void createProduct(String name, String price) {
+    public boolean isFormLoaded() {
+        return isElementDisplayed(txtProductName);
+    }
+
+    public void createProduct(String name) {
         clickAddNew();
         type(txtProductName, name);
-        type(txtProductPrice, price);
         click(btnSave);
     }
 
@@ -59,11 +62,10 @@ public class ProductPage extends BasePage {
         }
     }
 
-    public String getFirstProductName() {
-        return getText(firstProductName);
-    }
-
-    public void deleteFirstProduct() {
+    public void deleteFirstMatchingProduct() {
         click(btnFirstDelete);
+        if (isElementDisplayed(btnSwalConfirm)) {
+            click(btnSwalConfirm);
+        }
     }
 }

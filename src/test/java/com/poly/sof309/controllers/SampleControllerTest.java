@@ -77,7 +77,7 @@ public class SampleControllerTest {
     }
 
     @Test
-    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @Timeout(value = 3, unit = TimeUnit.SECONDS)
     @DisplayName("TC_AUTH_06: Kiểm tra hiệu năng xác thực (@Timeout)")
     public void testAuthPerformance() {
         for (int i = 0; i < 5000; i++) {

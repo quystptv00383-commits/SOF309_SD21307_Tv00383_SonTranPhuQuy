@@ -11,7 +11,7 @@ import java.time.Duration;
 
 /**
  * =========================================================================
- * [Y4 - P2] TESTNG AUTOMATION TEST SUITE CHO PHÂN HỆ ĐĂNG NHẬP TEA POS
+ * [Y4 - P2] TESTNG AUTOMATION TEST SUITE CHO PHÂN HỆ ĐĂNG NHẬP TEA POS (3s)
  * Kỹ thuật áp dụng: Test Groups (smoke, regression), DataProvider (Data-Driven)
  * Sinh viên thực hiện: Sơn Trần Phú Quý - MSSV: Tv00383 - Lớp: SD21307
  * =========================================================================
@@ -37,7 +37,7 @@ public class LoginTestNGTest {
         }
         
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
     }
@@ -57,11 +57,11 @@ public class LoginTestNGTest {
     @DataProvider(name = "loginAccounts")
     public Object[][] getLoginData() {
         return new Object[][] {
-            {"admin", "123456", true, "Đăng nhập Quản trị viên (Admin) hợp lệ"},
-            {"staff", "123456", true, "Đăng nhập Nhân viên thu ngân hợp lệ"},
+            {"admin", "12345678", true, "Đăng nhập Quản trị viên (Admin) hợp lệ"},
+            {"staff", "12345678", true, "Đăng nhập Nhân viên thu ngân (Staff) hợp lệ"},
             {"admin", "wrongPass@999", false, "Đăng nhập thất bại do sai mật khẩu"},
-            {"user_locked", "123456", false, "Đăng nhập thất bại do tài khoản bị vô hiệu hóa"},
-            {"", "123456", false, "Đăng nhập thất bại do để trống tên tài khoản"},
+            {"user_locked", "12345678", false, "Đăng nhập thất bại do tài khoản không tồn tại/bị khóa"},
+            {"", "12345678", false, "Đăng nhập thất bại do để trống tên tài khoản"},
             {"admin", "", false, "Đăng nhập thất bại do để trống mật khẩu"}
         };
     }
@@ -69,17 +69,17 @@ public class LoginTestNGTest {
     @Test(groups = {"smoke"}, priority = 1, description = "Kiểm tra hiển thị giao diện đăng nhập Tea POS")
     public void testLoginPageDisplay() {
         driver.get(BASE_URL);
-        Assert.assertTrue(driver.getTitle().contains("TEA POS") || driver.getPageSource().contains("TEA POS SYSTEM"),
-                "Tiêu đề trang hoặc nội dung phải chứa thương hiệu TEA POS");
+        Assert.assertTrue(driver.getTitle().contains("TEA POS") && loginPage.isBrandTitleDisplayed(),
+                "Trang đăng nhập phải hiển thị đúng tiêu đề và logo TEA POS SYSTEM");
     }
 
     @Test(groups = {"smoke"}, priority = 2, description = "Kiểm tra đăng nhập thành công với tài khoản Admin")
     public void testLoginAdminSuccess() {
         driver.get(BASE_URL);
-        loginPage.login("admin", "123456");
+        loginPage.login("admin", "12345678");
         String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("/admin") || currentUrl.contains("/home") || currentUrl.contains("/dashboard") || currentUrl.contains("/pos") || currentUrl.contains("/login"),
-                "Đăng nhập Admin kiểm tra phản hồi từ hệ thống");
+        Assert.assertTrue(currentUrl.contains("/admin/dashboard"),
+                "Đăng nhập Admin hợp lệ phải chuyển về /admin/dashboard, URL thực tế: " + currentUrl);
     }
 
     @Test(groups = {"regression"}, dataProvider = "loginAccounts", priority = 3,
@@ -90,11 +90,11 @@ public class LoginTestNGTest {
 
         String currentUrl = driver.getCurrentUrl();
         if (isExpectedSuccess) {
-            Assert.assertTrue(currentUrl.contains("/admin") || currentUrl.contains("/pos") || currentUrl.contains("/home") || currentUrl.contains("/login"),
-                    "Đăng nhập thành công phản hồi đúng luồng");
+            Assert.assertTrue(currentUrl.contains("/admin/dashboard") || currentUrl.contains("/pos"),
+                    "[" + description + "] Đăng nhập thành công phải rời trang /login, URL: " + currentUrl);
         } else {
-            Assert.assertTrue(currentUrl.contains("/login") || !loginPage.getErrorMessage().isEmpty(),
-                    "Đăng nhập thất bại phải thông báo lỗi hoặc giữ ở trang login");
+            Assert.assertTrue(currentUrl.contains("/login"),
+                    "[" + description + "] Đăng nhập thất bại phải ở lại trang /login, URL: " + currentUrl);
         }
     }
 }

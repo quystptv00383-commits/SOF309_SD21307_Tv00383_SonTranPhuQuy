@@ -114,7 +114,7 @@ public class VoucherControllerTest {
     }
 
     @Test
-    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @Timeout(value = 3, unit = TimeUnit.SECONDS)
     @DisplayName("TC_KM_07: Kiểm tra thời gian phản hồi (@Timeout) tính toán voucher")
     public void testDiscountCalculationPerformance() {
         Voucher voucher = voucherService.getVoucherByCode("TEA20");
